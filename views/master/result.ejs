@@ -1,0 +1,138 @@
+<!DOCTYPE HTML>
+<html>
+
+  <head>
+    <% include ../partials/dependencies %>
+    <script src="<%- highcharts %>" /></script>
+    <script src="<%- highchartsdata %>"></script>
+    <script src="/js/common/reports.js"></script>
+    <script>
+      var result = <%- JSON.stringify(result) %>;
+    </script>
+    <script src="/js/master/result.js"></script>
+    <link rel="stylesheet" href="/css/master/result.css" />
+  </head>
+
+  <body>
+    <% include ../partials/navbar %>
+
+    <div id="content-wrapper">
+      <div id="content" class="container">
+
+        <div class="row">
+          <div class="col-xs-12 col-centered">
+            <section>
+
+              <% if (result.number < result_count) { %>
+                <a href="/jobs/<%- job.id %>/results/<%- result.number + 1 %>"><i class="previous-result fa fa-2x fa-arrow-right"></i></a>
+              <% } %>
+              <% if (result.number > 1) { %>
+                <a href="/jobs/<%- job.id %>/results/<%- result.number - 1 %>"><i class="next-result fa fa-2x fa-arrow-left"></i></a>
+              <% } %>
+
+              <h3 class="result-number"># <%- result.number %></h3>
+              <%- include('../partials/result-status-icon', { result: result }) %>
+
+              <h4><%- job.name %> <span class="gray-font"><%- job.project.name %></span></h4>
+
+              <div class="result-overview">
+                <% if (result.worker_name) { %><h5><b>Worker:</b> <%- result.worker_name %></h5><% } %>
+
+                <h5><b>Queued:</b> <%- moment(result.queued).format('dddd, M/D/YYYY, h:mm:ss A') %></h5>
+
+                <% if (result.started) { %>
+                  <h5><b>Queue Time:</b> <%- formatMilliseconds(result.queue_time) %></h5>
+                  <h5><b>Started:</b> <%- moment(result.started).format('dddd, M/D/YYYY, h:mm:ss A') %></h5>
+                <% } else { %>
+                  <h5><b>Queue Time:</b> <%- formatMilliseconds(moment().diff(result.queued)) %></h5>
+                <% } %>
+
+                <% if (result.finished) { %>
+                  <h5><b>Run Time:</b> <%- formatMilliseconds(result.run_time) %></h5>
+                  <h5><b>Finished:</b> <%- moment(result.finished).format('dddd, M/D/YYYY, h:mm:ss A') %></h5>
+                <% } else if (result.started) { %>
+                  <h5><b>Run Time:</b> <%- formatMilliseconds(moment().diff(result.started)) %></h5>
+                <% } %>
+
+                <% if (result.device) { %>
+                  <h5><b>Device:</b></h5>
+                  <% for (var key in result.device) { %>
+                    <h6><b><%- changeCase.upperCaseFirst(key) %>:</b> <%- result.device[key] %></h6>
+                  <% } %>
+                <% } %>
+
+                <% if (result.data) { %>
+                  <h5><b>Data:</b></h5>
+                  <% for (var key in result.data) { %>
+                    <h6><b><%- key %>:</b> <%- include('../partials/pretty-print', { obj: result.data[key] }) %></h6>
+                  <% } %>
+                <% } %>
+
+                <% if (result.error_messages && result.error_messages.length > 0) { %>
+                  <h5><b>Errors:</b></h5>
+                  <% for (var i = 0; i < result.error_messages.length; i++) { %>
+                    <h6><%- result.error_messages[i] %></h6>
+                  <% } %>
+                <% } %>
+
+                <span id="files" hidden>
+                  <h5><b>Files:</b></h5>
+                </span>
+
+              </div>
+
+            </section>
+          </div>
+        </div>
+
+        <ul class="nav nav-tabs">
+          <li class="tab active"><a data-toggle="tab" href="#summary-wrapper">Summary</a></li>
+          <% if (result.reports) { %>
+            <% for (var i = 0; i < result.reports.length; i++) { %>
+              <li class="tab"><a data-toggle="tab" href="#report-<%- i %>-wrapper"><%- changeCase.titleCase(result.reports[i].title) %></a></li>
+            <% } %>
+          <% } %>
+        </ul>
+
+        <div class="tab-content">
+          <div id="summary-wrapper" class="tab-pane fade in active">
+            <section>
+              <% for (var i = 0; i < result.pipeline.length; i++) { %>
+                <h4 class="phase-header"><b><%- result.pipeline[i].name %></b></h5>
+                <% for (var j = 0; j < result.pipeline[i].tasks.length; j++) { %>
+                  <div class="task <% if (result.pipeline[i].tasks[j].errors && result.pipeline[i].tasks[j].errors.length > 0) { %>task-error<% } %>">
+                    <h5><b>Params:</b></h5>
+                    <% for (var key in result.pipeline[i].tasks[j].params) { %>
+                      <h6><b><%- changeCase.titleCase(key) %>:</b> <%- include('../partials/pretty-print', { obj: result.pipeline[i].tasks[j].params[key] }) %></h6>
+                    <% } %>
+
+                    <% if (Object.keys(result.pipeline[i].tasks[j].output).length > 0) { %>
+                     <h5><b>Output:</b></h5>
+                      <% for (var key in result.pipeline[i].tasks[j].output) { %>
+                        <h6><b><%- changeCase.titleCase(key) %>:</b> <%- include('../partials/pretty-print', { obj: result.pipeline[i].tasks[j].output[key] }) %></h6>
+                      <% } %>
+                    <% } %>
+
+                    <% if (result.pipeline[i].tasks[j].errors && result.pipeline[i].tasks[j].errors.length > 0) { %>
+                      <h5><b>Errors:</b></h5>
+                      <% for (var k = 0; k < result.pipeline[i].tasks[j].errors.length; k++) { %>
+                        <h6><%- result.pipeline[i].tasks[j].errors[k] %></h6>
+                      <% } %>
+                    <% } %>
+                  </div>
+                <% } %>
+              <% } %>
+            </section>
+          </div>
+          <% if (result.reports) { %>
+            <% for (var i = 0; i < result.reports.length; i++) { %>
+              <div id="report-<%- i %>-wrapper" class="tab-pane fade"><section><div class="report-container" id="report-<%- i %>"></div></section></div>
+            <% } %>
+          <% } %>
+        </div>
+
+      </div>
+    </div>
+  </body>
+
+</html>

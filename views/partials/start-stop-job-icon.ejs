@@ -1,0 +1,10 @@
+<!DOCTYPE HTML>
+<% if (job.results.length > 0 && (job.results[job.results.length - 1].status === 'running' || job.results[job.results.length - 1].status === 'queued')) { %>
+	<form class="stop-job" method="post" action="/jobs/<%- job.id %>/stop">
+	  <button type="submit" class="fa-button"><i class="fa fa-2x fa-stop"></i></button>
+	</form>
+<% } else { %>
+	<form class="start-job" method="post" action="/jobs/<%- job.id %>/start">
+	  <button type="submit" class="fa-button"><i class="fa fa-2x fa-play"></i></button>
+	</form>
+<% } %>

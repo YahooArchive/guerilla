@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <% include ../partials/dependencies %>
+    <script src="/js/common/create.js"></script>
+  </head>
+  <body>
+    <% include ../partials/navbar %>
+
+    <div id="content-wrapper">
+      <div id="content" class="container">
+
+        <div class="row">
+          <div class="col-xs-6 col-centered">
+            <section>
+              <h3>Create Project</h3>
+
+              <p />
+
+              <form id="create-form" method="post" action="/projects">
+
+                <div class="form-group" id="name">
+                  <h5>Name</h5>
+                  <h5 class="err-msg" id="name-error"></h5>
+                  <input name="name" class="form-control">
+                </div>
+
+                <p />
+
+                <div><input type="submit" class="button primary-button" value="Create Project" /></div>
+
+              </form>
+            </section>
+          </div>
+        </div>
+       
+      </div>
+    </div>
+
+  </body>
+</html>

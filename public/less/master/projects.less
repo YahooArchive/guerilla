@@ -1,0 +1,55 @@
+/*
+ * Guerilla
+ * Copyright 2015, Yahoo Inc.
+ * Copyrights licensed under the MIT License.
+ */
+
+@import '../common/variables';
+
+.project-name {
+	display: inline-block;
+	margin: 5px 0 0 0;
+}
+
+.edit-project, .create-job {
+	float: right;
+	margin-top: 3px;
+	margin-left: 20px;
+	color: @dark-font-color;
+}
+
+a {
+	text-decoration: none;
+
+	&:hover, :active {
+		text-decoration: none;
+	}
+}
+
+.job-name {
+	font-size: 13pt;
+}
+
+.job-name-enabled {
+	color: @primary-color;
+}
+
+.job-name-disabled {
+	color: @mid-font-color;
+}
+
+.result {
+	display: inline-block;
+	margin-left: 10px;
+}
+
+.result-status-icon {
+	text-align: center;
+	margin-bottom: 5px;
+	min-width: 25px;
+}
+
+.result-number {
+	color: @mid-font-color;
+	text-align: center;
+}

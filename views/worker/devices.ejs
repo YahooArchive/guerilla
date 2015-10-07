@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html>
+
+  <head>
+    <% include ../partials/dependencies %>
+  </head>
+
+  <body>
+    <% include ../partials/navbar %>
+
+    <div id="content-wrapper">
+      <div id="content" class="container">
+
+        <div class="row">
+          <div class="col-xs-8 col-centered">
+            <section>
+              <h3>Devices</h3>
+            </section>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-xs-8 col-centered">
+            <% for (var i = 0; i < devices.length; i++) { %>
+              <section>
+                <h4><%- devices[i].name %></h4>
+                <h5>Platform: <%- devices[i].platform %></h5>
+                <h5>OS: <%- devices[i].OS %></h5>
+                <h5>UDID: <%- devices[i].identifier %></h5>
+                <h5>Tag: <%- devices[i].tag %></h5>
+              </section>
+            <% } %>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </body>
+
+</html>

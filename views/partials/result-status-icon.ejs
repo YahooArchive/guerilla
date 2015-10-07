@@ -1,0 +1,15 @@
+<!DOCTYPE HTML>
+    <script>
+      var result = <%- JSON.stringify(result) %>;
+    </script>
+<% if (result.status === 'running') { %>
+  <i class="gray-font fa fa-2x fa-spinner fa-pulse"></i>
+<% } else if (result.status === 'queued') { %>
+  <i class="gray-font fa fa-2x fa-ellipsis-h"></i>
+<% } else if (result.status === 'failure') { %>
+  <i class="red-font fa fa-2x fa-times"></i>
+<% } else if (result.status === 'success') { %>
+  <i class="green-font fa fa-2x fa-check"></i>
+<% } else { %>
+  <i class="yellow-font fa fa-2x fa-minus"></i>
+<% } %>

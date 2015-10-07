@@ -1,0 +1,73 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <% include ../partials/dependencies %>
+    <link rel="stylesheet" href="/css/master/projects.css" />
+  </head>
+  <body>
+    <% include ../partials/navbar %>
+
+    <div id="content-wrapper">
+      <div id="content" class="container">
+
+        <% for (var i = 0; i < projects.length; i++) { %>
+            <div class="row">
+              <div class="col-xs-11 col-centered">
+                <section>
+
+                  <div>
+                    <h3 class="project-name"><%- projects[i].name %></h3>
+                    <a href="/projects/<%- projects[i].id %>/edit"><i class="edit-project fa fa-2x fa-cog"></i></a>
+                    <a href="/projects/<%- projects[i].id %>/jobs/create"><i class="create-job fa fa-2x fa-plus"></i></a><br />
+                  </div>
+
+                  <hr>
+
+                  <% for (var j = 0; j < projects[i].jobs.length; j++) { %>
+
+                    <div class="row">
+                      <div class="col-xs-12">
+
+                        <div>
+
+                          <div class="col-xs-7">
+                            <% if (projects[i].jobs[j].valid) { %>
+                              <a href="/jobs/<%- projects[i].jobs[j].id %>" <% if (projects[i].jobs[j].enabled) { %>class="job-name job-name-enabled"<% } else { %>class="job-name job-name-disabled"<% } %> ><%- projects[i].jobs[j].name %></a>
+                            <% } else { %>
+                              <a href="/jobs/<%- projects[i].jobs[j].id %>" class="job-name red-font">Invalid Job</a>
+                            <% } %>
+                            <%- include('../partials/config-location', { config_location: projects[i].jobs[j].config_location }) %>
+                          </div>
+
+                          <div class="col-xs-4">
+                            <% for (var k = 0; k < projects[i].jobs[j].results.length; k++) { %>
+                              <a href="/jobs/<%- projects[i].jobs[j].id %>/results/<%- projects[i].jobs[j].results[k].number %>" class="result">
+                                <div class="result-status-icon">
+                                  <%- include('../partials/result-status-icon', { result: projects[i].jobs[j].results[k] }) %>
+                                </div>
+                                <div class="result-number"><%- projects[i].jobs[j].results[k].number %></div>
+                              </a>
+                            <% } %>
+                          </div>
+
+                          <div class="col-xs-1">
+                            <%- include('../partials/start-stop-job-icon', { job: projects[i].jobs[j] }) %>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <hr>
+
+                  <% } %>
+
+                </section>
+              </div>
+            </div>
+          <% } %>
+
+      </div>
+    </div>
+
+  </body>
+</html>

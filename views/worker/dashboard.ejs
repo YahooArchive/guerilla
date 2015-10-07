@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html>
+
+  <head>
+    <% include ../partials/dependencies %>
+  </head>
+
+  <body>
+    <% include ../partials/navbar %>
+
+    <div id="content-wrapper">
+      <div id="content" class="container">
+
+        <div class="row">
+          <% if (activeJobs.length === 0) { %>
+            <div class="col-xs-8 col-centered">
+              <section>
+                <h3>No Active Jobs</h3>
+              </section>
+            </div>
+          <%} else { %>
+            <% for (var i = 0; i < activeJobs.length; i++) { %>
+              <div class="col-xs-8 col-centered">
+                <section>
+                  <%- include('../partials/result-status-icon', { result: activeJobs[i].result }) %>
+                  <h4>Job: <%- activeJobs[i].job.name %></h4>
+                  <h5>Result #: <%- activeJobs[i].result.number %></h5>
+                  <h5>Started: <%- moment(activeJobs[i].result.started).format('dddd, M/D/YYYY, h:mm:ss A') %></h5>
+                  <h5>Run Time: <%- formatMilliseconds(moment().diff(activeJobs[i].result.started)) %></h5>
+                </section>
+              </div>
+            <% } %>
+          <% } %>
+        </div>
+
+      </div>
+    </div>
+  </body>
+
+</html>

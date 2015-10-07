@@ -1,0 +1,6 @@
+<!DOCTYPE HTML>
+<% if (typeof obj === 'object') { %>
+	<%- JSON.stringify(obj, null, 1) %>
+<% } else { %>
+	<%- obj %>
+<% } %>

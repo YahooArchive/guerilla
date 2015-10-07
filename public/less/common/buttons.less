@@ -1,0 +1,57 @@
+/*
+ * Guerilla
+ * Copyright 2015, Yahoo Inc.
+ * Copyrights licensed under the MIT License.
+ */
+
+.fa-button {
+	padding: 0;
+	margin: 0;
+	background: none;
+	border: none;
+}
+
+.button {
+    cursor: pointer;
+    padding: 8px;
+    display: inline-block;
+    margin: 0;
+    outline: none;
+    position: relative;
+    border: none;
+}
+
+.button-hover-active (@color, @background) {
+    color: @color;
+    background: @background;
+}
+
+.primary-button {
+    background: @primary-color;
+    border-color: @primary-color;
+    color: @light-font-color;
+
+    &:hover, :active {
+        .button-hover-active(@light-font-color, darken(@primary-color, 5%));
+    }
+}
+
+.danger-button {
+    background: @red-color;
+    border-color: @red-color;
+    color: @light-font-color;
+
+    &:hover, :active {
+        .button-hover-active(@light-font-color, darken(@red-color, 5%));
+    }
+}
+
+.default-button {
+    background: @dark-gray-color;
+    border-color: @dark-gray-color;
+    color: @light-font-color;
+
+    &:hover, :active {
+        .button-hover-active(@light-font-color, darken(@dark-gray-color, 5%));
+    }
+}

@@ -1,0 +1,20 @@
+<!DOCTYPE HTML>
+<div id="navbar-wrapper" class="container-fixed">
+	<nav id="navbar" class="container">
+		<div id="navbar-left">
+			<h2 id="navbar-logo"><a href="/">Guerilla</a></h2>
+		</div>
+		<div id="navbar-right">
+			<ul class="navbar-items">
+				<% if (mode === 'master') { %>
+					<li class="navbar-item"><a href="/">Dashboard</a></li>
+					<li class="navbar-item"><a href="/projects/create">Create Project</a></li>
+					<li class="navbar-item"><a href="/workers">Workers</a></li>
+				<% } else if (mode === 'worker') { %>
+					<li class="navbar-item"><a href="/">Dashboard</a></li>
+					<li class="navbar-item"><a href="/devices">Devices</a></li>
+				<% } %>
+			</ul>
+		</div>
+	</nav>
+</div>

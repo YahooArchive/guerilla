@@ -1,0 +1,92 @@
+<!DOCTYPE HTML>
+<html>
+
+  <head>
+    <% include ../partials/dependencies %>
+    <script src="<%- highcharts %>" /></script>
+    <script src="/js/common/reports.js"></script>
+    <script>
+      var job = <%- JSON.stringify(job) %>;
+    </script>
+    <script src="/js/master/job.js"></script>
+    <link rel="stylesheet" href="/css/master/job.css" />
+  </head>
+
+  <body>
+    <% include ../partials/navbar %>
+
+    <div id="content-wrapper">
+      <div id="content" class="container">
+
+        <div class="row">
+          <div class="col-xs-12">
+            <section>
+
+              <a href="/projects/<%- job.project_id %>/jobs/<%- job.id %>/edit"><i class="edit-job fa fa-2x fa-cog"></i></a>
+              <%- include('../partials/start-stop-job-icon', { job: job }) %>
+
+              <% if (job.valid) { %>
+                <h3><%- job.name %></h3>
+                <%- include('../partials/config-location', { config_location: job.config_location }) %>
+                <h5><b>Project:</b> <%- job.project.name %></h5>
+                <h5><b>Platform:</b>
+                  <% if (job.platform === 'ios') { %>iOS
+                  <% } else { %><%- changeCase.upperCaseFirst(job.platform) %>
+                  <% } %>
+                </h5>
+                <h5><b>Enabled:</b> <% if (job.enabled) { %>Yes<% } else { %>No<% } %></h5>
+                <h5><b>Timeout:</b> <%- job.timeout %> seconds</h5>
+                <% if (job.cron_time) { %><h5><b>Cron Time:</b> <%- job.cron_time %></h5><% } %>
+                <% if (job.notify) { %><h5><b>Notify:</b> <%- job.notify %></h5><% } %>
+                <% if (job.device_tag) { %><h5><b>Device Tag:</b> <%- job.device_tag %></h5><% } %>
+                
+                <h5><b>Checkout:</b></h5>
+                <% for (var key in job.checkout) { %>
+                  <h6><b><%- changeCase.titleCase(key) %>:</b> <%- include('../partials/pretty-print', { obj: job.checkout[key] }) %></h6>
+                <% } %>
+
+                <h5><b>Compile:</b></h5>
+                <% for (var key in job.compile) { %>
+                  <h6><b><%- changeCase.titleCase(key) %>:</b> <%- include('../partials/pretty-print', { obj: job.compile[key] }) %></h6>
+                <% } %>
+
+                <h5><b>Tests:</b></h5>
+                <% for (var i = 0; i < job.tests.length; i++) { %>
+                  <% for (var key in job.tests[i]) { %>
+                    <h6><b><%- changeCase.titleCase(key) %>:</b> <%- include('../partials/pretty-print', { obj: job.tests[i][key] }) %></h6>
+                  <% } %>
+                  <% if (i !== job.tests.length - 1) { %><hr /><% } %>
+                <% } %>
+              <% } else { %>
+                <h3>Invalid Job</h3>
+                <%- include('../partials/config-location', { config_location: job.config_location }) %>
+                <h5><b>Validation Error:</b> <%- job.validation_error %></h5>
+              <% } %>
+
+            </section>
+          </div>
+        </div>
+
+        <% if (job.valid) { %>
+          <% if (job.reports.length > 0) { %>
+            <ul class="nav nav-tabs">
+              <li class="tab active"><a data-toggle="tab" href="#report-0-wrapper"><%- changeCase.titleCase(job.reports[0].title) %></a></li>
+              <% for (var i = 1; i < job.reports.length; i++) { %>
+                <li class="tab"><a data-toggle="tab" href="#report-<%- i %>-wrapper"><%- changeCase.titleCase(job.reports[i].title) %></a></li>
+              <% } %>
+            </ul>
+
+            <div class="tab-content">
+              <div id="report-0-wrapper" class="tab-pane fade in active"><section><div class="report-container" id="report-0"></div></section></div>
+              <% for (var i = 1; i < job.reports.length; i++) { %>
+                <div id="report-<%- i %>-wrapper" class="tab-pane fade"><section><div class="report-container" id="report-<%- i %>"></div></section></div>
+              <% } %>
+            </div>
+          <% } %>
+        <% } %>
+
+      </div>
+    </div>
+  </body>
+
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE HTML>
+<html>
+
+  <head>
+    <% include ../partials/dependencies %>
+    <script src="/js/common/edit.js"></script>
+  </head>
+
+  <body>
+    <% include ../partials/navbar %>
+
+    <div id="content-wrapper">
+      <div id="content" class="container">
+
+        <div class="row">
+          <div class="col-xs-6 col-centered">
+            <section>
+              <h3>Edit Job</h3>
+
+              <p />
+
+              <form id="edit-form" method="put" action="/projects/<%- project_id %>/jobs/<%- job_id %>">
+
+                <div class="form-group" id="user">
+                  <h5>User/Org</h5>
+                  <h5 class="err-msg" id="user-error"></h5>
+                  <input name="user" class="form-control" value="<%- config_location.user %>">
+                </div>
+
+                <div class="form-group" id="name">
+                  <h5>Repo</h5>
+                  <h5 class="err-msg" id="repo-error"></h5>
+                  <input name="repo" class="form-control" value="<%- config_location.repo %>">
+                </div>
+
+                <div class="form-group" id="path">
+                  <h5>Path</h5>
+                  <h5 class="err-msg" id="path-error"></h5>
+                  <input name="path" class="form-control" value="<%- config_location.path %>">
+                </div>
+
+                <div class="form-group" id="ref">
+                  <h5>Commit/Branch/Tag</h5>
+                  <h5 class="err-msg" id="ref-error"></h5>
+                  <input name="ref" class="form-control" value="<%- config_location.ref %>">
+                </div>
+
+                <p />
+
+                <div><input type="submit" class="button primary-button" value="Save Changes" /></div>
+
+              </form>
+
+              <button type="button" class="button danger-button full-width" data-toggle="modal" data-target=".delete-modal">Delete Job</button>
+
+            </section>
+          </div>
+        </div>
+       
+      </div>
+    </div>
+
+    <div class="modal fade delete-modal" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="delete-modal" aria-hidden="true">
+      <div class="modal-dialog">
+        <div id="confirm-delete" class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <label class="modal-title">Are You Sure?</label>
+          </div>
+          <div class="modal-body">
+            You are about to delete this job and all of its data.
+          </div>
+          <div class="modal-footer">
+            <form id="delete-form" method="delete" action="/jobs/<%- job_id %>">
+              <div><input type="submit" class="button danger-button" value="Yes" /></div>
+            </form>
+            <button type="button" class="button default-button full-width" data-dismiss="modal">Cancel</button>
+          </div>
+        </div>
+
+        <div id="delete-progress" class="modal-content" hidden>
+          <div class="modal-body">
+            Deleting... This may take a few minutes...
+          </div>
+      </div>
+    </div>
+
+  </body>
+
+</html>

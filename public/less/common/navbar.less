@@ -1,0 +1,73 @@
+/*
+ * Guerilla
+ * Copyright 2015, Yahoo Inc.
+ * Copyrights licensed under the MIT License.
+ */
+
+#navbar-wrapper {
+    min-width: @webpage-width;
+    width: 100%;
+    height: @navbar-height;
+    background: @navbar-background-color;
+    color: @light-font-color;
+    position: fixed;
+    top: 0px;
+    z-index: 1000;
+}
+
+#navbar {
+    position: relative;
+    padding: 0 !important;
+    height: 100%;
+
+    a {
+        display: block;
+        text-decoration: none;
+        color: @light-font-color;
+    }
+}
+
+#navbar-left {
+    float: left;
+    height: 100%;
+}
+
+
+#navbar-right {
+    float: right;
+    height: 100%;
+}
+
+.navbar-items {
+    height: 100%;
+}
+
+.navbar-item {
+    position: relative;
+    display: inline-block;
+    height: 100%;
+    list-style-type: none;
+    font-size: 11pt;
+    line-height: @navbar-height;
+    text-align: center;
+
+    &:hover, &:active {
+        background-color: @navbar-active-background-color;
+        cursor: pointer;
+
+        .navbar-dropdown {
+            display: block;
+        }
+    }
+
+    a {
+        padding-left: @navbar-item-side-padding;
+        padding-right: @navbar-item-side-padding;
+    }
+}
+
+#navbar-logo {
+    line-height: @navbar-height;
+    padding: 0;
+    margin: 0;
+}
