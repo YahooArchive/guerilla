@@ -31,6 +31,7 @@ Copy `config/worker/config.json.sample` to `config/worker/config.json`
 - `name` **String** - Name of the worker server.
 - `host` **String** - Host name for the Guerilla server.
 - `port` **Integer** - Port on which to run the Guerilla server.
+- `data_dir` **String** *Optional*- Root for all output. Defaults to ~/Guerilla if absent.
 - `db` **Object** - Database connection information.
     + `driver` **String** - Database driver. This should be "redis".
     + `host` **String** - Host of the Redis server that Guerilla should connect to. Master and all workers need to connect to the same Redis instance.
