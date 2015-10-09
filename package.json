@@ -43,7 +43,6 @@
         "less-middleware": "^2.0.1",
         "moment": "^2.10.3",
         "morgan": "^1.5.1",
-        "mkdirp": "^0.5.1",
         "multer": "^1.0.1",
         "node-uuid": "^1.4.3",
         "nodemailer": "^1.4.0",

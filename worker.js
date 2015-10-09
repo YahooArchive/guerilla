@@ -19,7 +19,7 @@ logger.d('Validating config/worker/config.json...');
 try { config = require('./lib/config'); }
 catch (ex) { return logger.e(ex.message); }
 
-fs.mkdirs(config.output_root_dir, function (error) {
+fs.mkdirs(config.data_dir, function (error) {
 	if (error) return logger.e('Failed to create the Guerilla directory. Exiting.');
 
 	logger.d('Connecting to db...');
