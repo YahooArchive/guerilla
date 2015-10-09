@@ -1,7 +1,14 @@
 language: node_js
 os: osx
 sudo: required
-node_js:
-  - "0.10"
+
+env:
+  - NODE_VERSION="0.10"
+
 before_install:
-  - brew install nvm
+  - rm -rf ~/.nvm
+  - git clone https://github.com/creationix/nvm.git ~/.nvm
+  - source ~/.nvm/nvm.sh
+  - nvm install $NODE_VERSION
+  - node --version
+  - npm install
