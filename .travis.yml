@@ -3,3 +3,5 @@ os: osx
 sudo: required
 node_js:
   - "0.10"
+before_install:
+  - brew install nvm
