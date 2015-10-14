@@ -9,6 +9,7 @@
 var async = require('async');
 var path = require('path');
 var childProcess = require('child_process');
+var config = require(path.join(__rootdir, 'lib', 'config'));
 var Report = require(path.join(__rootdir, 'lib', 'report'));
 var utilities = require(path.join(__rootdir, 'lib', 'utilities'));
 
@@ -201,7 +202,7 @@ module.exports.init = function (db) {
 	};
 
 	Job.prototype.getWorkingDir = function () {
-		return path.join(utilities.getTempDir(), this.id.toString());
+		return path.join(config.getTempDir(), this.id.toString());
 	};
 
 	Job.prototype.enqueue = function (callback) {
