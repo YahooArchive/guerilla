@@ -23,7 +23,7 @@ module.exports.execute = function execute (params, context, exec, callback) {
 		task: 'ios-uninstall'
 	});
 
-	var cmd = path.join(__rootdir, 'node_modules', 'ios-deploy', 'ios-deploy');
+	var cmd = path.join(__rootdir, 'node_modules', 'ios-deploy', 'build', 'Release', 'ios-deploy');
 
 	var args = [];
 	args.push('-i');
