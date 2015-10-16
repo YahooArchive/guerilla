@@ -46,3 +46,6 @@ config/master/*
 !config/master/config.json.sample
 config/worker/*
 !config/worker/config.json.sample
+
+# intellij Webstorm
+.idea/
