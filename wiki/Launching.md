@@ -16,6 +16,8 @@ Navigate to the Guerilla project directory and run:
 
 Navigate to the Guerilla project directory and start the node server.
 
-Master: `node server.js --master`
+If the --config option is absent the config file defaults to ```./config/{master|worker}/config.json```
 
-Worker: `node server.js --worker`
+Master: `node server.js --master [--config configFilePath]`
+
+Worker: `node server.js --worker [--config configFilePath]`

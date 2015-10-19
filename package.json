@@ -38,7 +38,7 @@
         "fs-extra": "^0.22.1",
         "github": "^0.2.4",
         "hiredis": "^0.4.0",
-        "ios-deploy": "^1.3.2",
+        "ios-deploy": "^1.8.0",
         "kue": "git://github.com/Automattic/kue.git#master",
         "less-middleware": "^2.0.1",
         "moment": "^2.10.3",
