@@ -1,0 +1,19 @@
+{
+	"name": "beyondkiss-dm",
+	"host": "http://localhost",
+	"port": 8888,
+	"db": {
+		"driver": "redis",
+		"host": "localhost",
+		"port": 6379
+	},
+	"devices": [
+		{
+			"tag": "beyondkiss-dm",
+			"platform": "ios",
+			"name": "NYC158",
+			"identifier": "7fa3d7d772f50ebcd2be76e6e2fb34c9850ece0f",
+			"OS": "8.3"
+		}
+	]
+}
