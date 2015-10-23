@@ -1,0 +1,19 @@
+{
+	"name": "gentlelook-lm vm",
+	"host": "http://gentlelook-lm.nytimes.corp.yahoo.com",
+	"port": 8889,
+	"db": {
+		"driver": "redis",
+		"host": "freshcaptain-dm.nytimes.corp.yahoo.com",
+		"port": 6379
+	},
+	"devices": [
+		{
+			"tag": "2",
+			"platform": "ios",
+			"name": "NYC157",
+			"identifier": "460d490be25d4c96f19bd4d9f8aaa8e4539660c5",
+			"OS": "8.3"
+		}
+	]
+}
