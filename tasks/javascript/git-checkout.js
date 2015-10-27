@@ -42,16 +42,13 @@ module.exports.execute = function execute (params, context, exec, callback) {
 
 			exec(cmd, args, {}, cb);
 		},
-		// Process the optional "pull" parameter (part1/2). If present we pull from pull's argument (the branch).
+		// Process the optional "pull" parameter (part1/2). If present we use pull's argument to format the pull cmd.
 		function (cb) {
 			if (!params.pull) {
 				return cb(null); //nothing to do
 			}
 			var cmd = "git";
-			var args = [];
-			args.push('pull');
-			args.push(params.pull);
-
+			var args = ['pull'].concat(params.pull);
 			var options = {cwd: context.checkout_root};
 			exec(cmd, args, options, cb);
 
@@ -108,12 +105,19 @@ module.exports.execute = function execute (params, context, exec, callback) {
 			var cmd = 'git';
 
 			var args = [];
-			args.push('rev-parse');
-			args.push('remotes/origin/' + params.pull + '^{commit}');
+			args.push('--no-pager');
+			args.push('log');
+			args.push('--oneline');
+			if (params.pull.length > 1)
+			    args.push("-G'"+ params.pull[1] + "'"); //todo don't rely on [1] to be branch
+			args.push('--decorate');
+			args.push('-1');
+
 
 			function stdout (data) {
-				if (data.length === 41)
-					output.pullversion = data.trim();
+				if (!data || data.length === 0) data = 'Error: No log output found\n';
+				if (data.length > 0)
+					output.pullCommitLog = data.substr(0, data.indexOf('\n'));
 			}
 
 			var options = { stdout: stdout, cwd: context.checkout_root };
