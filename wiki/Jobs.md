@@ -85,3 +85,50 @@ First create a project. A project is a collection of jobs. Then click the add ic
     ]
 }
 ```
+
+### Example with pull request in checkout.
+
+Note: the checkout Will fail if there are merge conflicts. For success the output will show the specific sha for the
+pulled branch.
+
+```json
+{
+    "name": "Example Job",
+    "platform": "android",
+    "cron_time": "0 0 * * *",
+    "device_tag": "device_type_1",
+    "notify": "example@yahoo.com",
+    "checkout": {
+        "type": "javascript",
+        "task": "git-checkout",
+        "checkout_url": "git@github.com:yahoo/SomeAndroidProject.git",
+        "branch": "master",
+        "pull": ["origin", "branch-to-pull"]
+    },
+    "compile": {
+        "type": "javascript",
+        "task": "gradle",
+        "gradle_tasks": ["clean", "assembleDebug"]
+    },
+    "tests": [
+        {
+            "type": "javascript",
+            "task": "apk-size",
+            "apk_name": "app-debug.apk"
+        }
+    ],
+    "reports": [
+        {
+            "title": "APK Size",
+            "type": "line",
+            "y_axis_label": "Size (MB)",
+            "series": [
+                "apk_size"
+            ],
+            "thresholds": {
+                "max": 10
+            }
+        }
+    ]
+}
+```
