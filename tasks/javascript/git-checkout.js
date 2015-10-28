@@ -48,8 +48,15 @@ module.exports.execute = function execute (params, context, exec, callback) {
 				return cb(null); //nothing to do
 			}
 			var cmd = "git";
-			var args = ['pull'].concat(params.pull);
-			var options = {cwd: context.checkout_root};
+			var args = ['pull', '--no-edit', '--commit'].concat(params.pull);
+
+            function stdout (data) {
+				if (data) {output.pullResults = data;}
+			}
+
+			var options = { stdout: stdout, cwd: context.checkout_root};
+
+
 			exec(cmd, args, options, cb);
 
 		},
@@ -59,25 +66,20 @@ module.exports.execute = function execute (params, context, exec, callback) {
 				return cb(null); //nothing to do
 			}
 			var cmd = 'git';
-			var args = [];
-			args.push('diff');
-			args.push('--name-only');
-			args.push('--diff-filter=U');
+			var args = ['--no-pager', 'diff', '--name-only', '--diff-filter=U'];
 			var hasError = false;
+			output.conflicts = 'Pull processed with no merge conflicts';
 			function stdout (data) {
 				if (data.length > 0 ) {
 					hasError = true;
-					output.conflicts = data;
-				} else {
-					output.noconflicts = 'Pull requested. No Merge conflicts with: ' + params.pull;
-				}
+					output.conflicts = data;}
 			}
 
 			var options = { stdout: stdout, cwd: context.checkout_root };
 
 			exec(cmd, args, options, function () {
 				if (hasError) {
-					cb(new Error('Pull requested. Merge conflicts with: ' + params.pull + ": " + output.conflicts));
+					cb(new Error('Pull requested. Merge conflicts found'));
 				}
 				else {
 					cb();
@@ -104,27 +106,22 @@ module.exports.execute = function execute (params, context, exec, callback) {
 			}
 			var cmd = 'git';
 
-			var args = [];
-			args.push('--no-pager');
-			args.push('log');
-			args.push('--oneline');
-			if (params.pull.length > 1)
-			    args.push("-G'"+ params.pull[1] + "'"); //todo don't rely on [1] to be branch
-			args.push('--decorate');
-			args.push('-1');
-
+			var args = ['--no-pager', 'log', '-1'];
 
 			function stdout (data) {
-				if (!data || data.length === 0) data = 'Error: No log output found\n';
-				if (data.length > 0)
-					output.pullCommitLog = data.substr(0, data.indexOf('\n'));
+				console.log("ZZZZ" + data);
+				output.pullLog = data;
+				//if (data) {
+				//	output.pullCommitLog = data;
+				//}
+				//if (!data || data.length == 0) data = 'Error: No log output found';
+				//if (data.length > 0)
+				//	output.pullCommitLog = data.substr(0, data.indexOf('\n'));
 			}
 
 			var options = { stdout: stdout, cwd: context.checkout_root };
 
-			exec(cmd, args, options, function () {
-				cb();
-			});
+			exec(cmd, args, options, cb);
 		},
 		function (cb) {
 			var cmd = 'git';
