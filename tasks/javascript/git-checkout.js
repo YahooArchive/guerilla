@@ -99,7 +99,7 @@ module.exports.execute = function execute (params, context, exec, callback) {
 
 			exec(cmd, args, options, cb);
 		},
-		//If we're in a pull export out the commit from the pull. TODO: show on ui. TODO: refactor redundant code
+		//If we're in a pull export out the commit from the pull.
 		function (cb) {
 			if (!params.pull) {
 				return cb(null); //nothing to do
@@ -109,14 +109,7 @@ module.exports.execute = function execute (params, context, exec, callback) {
 			var args = ['--no-pager', 'log', '-1'];
 
 			function stdout (data) {
-				console.log("ZZZZ" + data);
 				output.pullLog = data;
-				//if (data) {
-				//	output.pullCommitLog = data;
-				//}
-				//if (!data || data.length == 0) data = 'Error: No log output found';
-				//if (data.length > 0)
-				//	output.pullCommitLog = data.substr(0, data.indexOf('\n'));
 			}
 
 			var options = { stdout: stdout, cwd: context.checkout_root };
