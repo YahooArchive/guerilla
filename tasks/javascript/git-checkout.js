@@ -15,7 +15,10 @@ module.exports.validate = function validate () {
 		params: {
 			checkout_url: 'required',
 			branch: 'optional',
-			pull: 'optional',
+			pull: function (params, context) {
+				if (!params.pull) {return true;}   //optional and we don't have it.
+				return Array.isArray(params.pull) && params.pull.length === 2;
+			},
 			project_root: 'optional'
 		}
 	};
