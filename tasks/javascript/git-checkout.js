@@ -49,8 +49,7 @@ module.exports.execute = function execute (params, context, exec, callback) {
 			}
 			var cmd = "git";
 			var args = ['pull', '--no-edit', '--commit'].concat(params.pull);
-
-            function stdout (data) {
+			function stdout (data) {
 				if (data) {output.pullResults = data;}
 			}
 
