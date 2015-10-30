@@ -1,0 +1,15 @@
+
+1 New machine setup
+1.1 enable remote login via preferences/sharing/remotelogin
+1.1.1 do homebrew installs
+...python...
+1.2 setup ssh
+...create ~/.ssh dir
+1.5 from a develop machine
+1.5.1 vmrun clone ~/Documents/Virtual\ Machines.localized/OS\ X\ 10.10.vmwarevm/OS\ X\ 10.10.vmx  /Volumes/startech/GuerillaVMv3.vmx full
+1.5.2 cat ~/.ssh/id_rsa.pub | ssh user@remotehost 'cat >> ~/.ssh/authorized_keys' 
+
+npm install pm2 -g
+pm2 update
+
+pm2 start server.js --name "guerilla-worker" -- --worker

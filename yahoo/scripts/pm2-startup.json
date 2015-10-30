@@ -1,0 +1,19 @@
+{
+  "apps" : [{
+    // Master
+    "name"        : "guerilla-master",
+    "script"      : "server.js",
+    "args"        : ["--master  --config ~/GuerillaConfigure/$GuerillaLogicalMachine/master/"],
+    "watch"       : false,
+    "node_args"   : "--harmony",
+    "cwd"         : "~/Workspace/guerilla/server.js"
+  },{
+    // Worker
+    "name"        : "guerilla-worker",
+    "script"      : "server.js",
+    "args"        : ["--worker  --config ~/GuerillaConfigure/$GuerillaLogicalMachine/worker"],
+    "watch"       : false,
+    "node_args"   : "--harmony",
+    "cwd"         : "~/Workspace/guerilla/server.js"
+  }]
+}
