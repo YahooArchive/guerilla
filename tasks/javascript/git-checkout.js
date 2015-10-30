@@ -5,6 +5,7 @@
  *
  * Checks out a project from GitHub.
  */
+'use strict';
 
 var async = require('async');
 var path = require('path');
@@ -14,6 +15,10 @@ module.exports.validate = function validate () {
 		params: {
 			checkout_url: 'required',
 			branch: 'optional',
+			pull: function (params, context) {
+				if (!params.pull) {return true;}   //optional and we don't have it.
+				return Array.isArray(params.pull) && params.pull.length === 2;
+			},
 			project_root: 'optional'
 		}
 	};
@@ -40,17 +45,76 @@ module.exports.execute = function execute (params, context, exec, callback) {
 
 			exec(cmd, args, {}, cb);
 		},
+		// Process the optional "pull" parameter (part1/2). If present we use pull's argument to format the pull cmd.
+		function (cb) {
+			if (!params.pull) {
+				return cb(null); //nothing to do
+			}
+			var cmd = "git";
+			var args = ['pull', '--no-edit', '--commit'].concat(params.pull);
+			function stdout (data) {
+				if (data) {output.pullResults = data;}
+			}
+
+			var options = { stdout: stdout, cwd: context.checkout_root};
+
+
+			exec(cmd, args, options, cb);
+
+		},
+		// Process the optional "pull" parameter (part2/2). If any conflicts we stop with an error.
+		function (cb){
+			if (!params.pull) {
+				return cb(null); //nothing to do
+			}
+			var cmd = 'git';
+			var args = ['--no-pager', 'diff', '--name-only', '--diff-filter=U'];
+			var hasError = false;
+			output.conflicts = 'Pull processed with no merge conflicts';
+			function stdout (data) {
+				if (data.length > 0 ) {
+					hasError = true;
+					output.conflicts = data;}
+			}
+
+			var options = { stdout: stdout, cwd: context.checkout_root };
+
+			exec(cmd, args, options, function () {
+				if (hasError) {
+					cb(new Error('Pull requested. Merge conflicts found'));
+				}
+				else {
+					cb();
+				}
+			});
+		},
 		function (cb) {
 			var cmd = 'git';
-			
 			var args = [];
 			args.push('submodule');
 			args.push('update');
 			args.push('--init');
 			args.push('--force');
 			args.push('--recursive');
-			
+
 			var options = { cwd: context.checkout_root };
+
+			exec(cmd, args, options, cb);
+		},
+		//If we're in a pull export out the commit from the pull.
+		function (cb) {
+			if (!params.pull) {
+				return cb(null); //nothing to do
+			}
+			var cmd = 'git';
+
+			var args = ['--no-pager', 'log', '-1'];
+
+			function stdout (data) {
+				output.pullLog = data;
+			}
+
+			var options = { stdout: stdout, cwd: context.checkout_root };
 
 			exec(cmd, args, options, cb);
 		},
