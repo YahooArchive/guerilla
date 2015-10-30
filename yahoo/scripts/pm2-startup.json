@@ -3,17 +3,17 @@
     // Master
     "name"        : "guerilla-master",
     "script"      : "server.js",
-    "args"        : ["--master  --config ~/GuerillaConfigure/$GuerillaLogicalMachine/master/"],
+    "args"        : ["--master  --config /Users/bruceg/repos/GuerillaDeployNYC1/local/config/master/config.json"],
     "watch"       : false,
     "node_args"   : "--harmony",
-    "cwd"         : "~/Workspace/guerilla/server.js"
+    "cwd"         : "/Users/bruceg/repos/bruceg-yahoo-guerilla"
   },{
     // Worker
     "name"        : "guerilla-worker",
     "script"      : "server.js",
-    "args"        : ["--worker  --config ~/GuerillaConfigure/$GuerillaLogicalMachine/worker"],
+    "args"        : ["--worker  --config /Users/bruceg/repos/GuerillaDeployNYC1/local/config/worker/config.json"],
     "watch"       : false,
     "node_args"   : "--harmony",
-    "cwd"         : "~/Workspace/guerilla/server.js"
+    "cwd"         : "/Users/bruceg/repos/bruceg-yahoo-guerilla"
   }]
 }
