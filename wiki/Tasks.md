@@ -133,6 +133,7 @@ Checks out a project from GitHub.
 - `checkout_url` **String** - URL of project to checkout from.
 - `branch` **String** *Optional* - Branch of project to checkout. Defaults to the default branch.
 - `project_root` **String** *Optional* - Path from the checkout root to the root of the project if they are different. Defaults to the checkout root.
+- `pull` **Array** *Optional* - repo and branch arguments to a git pull command applied after the inital single branch clone. 
 
 ======
 #### gradle
