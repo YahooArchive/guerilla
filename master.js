@@ -13,12 +13,11 @@ var config;
 logger.d('Guerilla master is starting up...');
 
 logger.d('Validating config/master/config.json...');
-try { config = require('./lib/config'); }
-catch (ex) { return logger.e(ex.message); }
+config = require('./lib/config');
 
 logger.d('Connecting to db...');
 db.connect(config.db, function (error, db) {
-	if (error) return logger.e('Failed to connect to the db. Exiting.');
+	if (error)  throw new Error('Failed to connect to the db. Exiting. Error:' + error);
 	logger.d('Connected to db...');
 	logger.d('Initializing queue...');
 	require('./lib/queue').init(function () {

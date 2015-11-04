@@ -16,8 +16,7 @@ else if (argv.worker) {
 	require('./worker.js');
 }
 else {
-	logger.e('Must run with --master or --worker.');
-	process.exit();
+	throw new Error('Must run with --master or --worker.');
 }
 
 function shutdown (callback) {
