@@ -21,3 +21,6 @@ If the --config option is absent the config file defaults to ```./config/{master
 Master: `node server.js --master [--config configFilePath]`
 
 Worker: `node server.js --worker [--config configFilePath]`
+
+Environment variables in the configFilePath of the form %EnvVar% will be resolved. Undefined variables cause a startup exception.
+
