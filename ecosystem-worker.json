@@ -31,7 +31,7 @@
       host : "172.16.221.128",
       ref  : "origin/deploy-nyc1",
       repo : "git@git.corp.yahoo.com:bruceg/yahoo-guerilla.git",
-      path : "/Users/guser/Workspace/worker",
+      path : "/var/www/development/worker",
       "post-deploy" : "npm install ; pm2 startOrRestart ecosystem-worker.json --env dev",
       env  : {
         NODE_ENV: "dev"
