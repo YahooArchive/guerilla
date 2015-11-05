@@ -1,0 +1,11 @@
+{
+  "apps" : [{
+    // Master
+    "name"        : "guerilla-master",
+    "script"      : "server.js",
+    "args"        : ["--worker",  "--config", "/Users/bruceg/repos/bruceg-yahoo-guerilla/deploy/config/reasonfeed-vm/config/worker/config2.json"],
+    "watch"       : false,
+    "node_args"   : "--harmony",
+    "cwd"         : "/Users/bruceg/repos/bruceg-yahoo-guerilla"
+  }]
+}

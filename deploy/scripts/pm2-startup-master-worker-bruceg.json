@@ -1,0 +1,27 @@
+{
+  "apps" : [{
+    // Master
+    "name"        : "guerilla-master",
+    "script"      : "server.js",
+    "args"        : ["--master"],
+    "watch"       : false,
+    "node_args"   : "--harmony",
+    "cwd"         : "/Users/bruceg/repos/bruceg-yahoo-guerilla",
+    "env": {
+        "NODE_ENV": "production",
+        "GuerillaConfigFile": "$GuerillaHostName/hahah"
+    }
+  },{
+    // Worker
+    "name"        : "guerilla-worker",
+    "script"      : "server.js",
+    "args"        : ["--worker"],
+    "watch"       : false,
+    "node_args"   : "--harmony",
+    "cwd"         : "/Users/bruceg/repos/bruceg-yahoo-guerilla",
+    "env": {
+        "NODE_ENV": "production",
+        "GuerillaConfigFile": "$GuerillaHostName/hahah"
+    }
+  }]
+}

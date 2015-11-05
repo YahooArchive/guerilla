@@ -1,0 +1,19 @@
+{
+	"name": "Guerilla Worker X",
+	"host": "http://localhost",
+	"port": 8888,
+	"db": {
+		"driver": "redis",
+		"host": "localhost",
+		"port": 6379
+	},
+	"devices": [
+		{
+			"tag": "",
+			"platform": "",
+			"name": "",
+			"identifier": "",
+			"OS": ""
+		}
+	]
+}
