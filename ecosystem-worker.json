@@ -10,7 +10,7 @@
     "args"        : ["--worker", "--config", "/Users/guser/Workspace/worker/guerilla/deploy/config/" + (process.env.GuerillaHostName || "process.env.GuerillaHostName not found") + "/config/worker/config.json"],
     "watch"       : false,
     "node_args"   : "--harmony",
-    "cwd"         : "/Users/guser/Workspace/guerilla"
+    "cwd"         : "/var/www/development/worker/source"
   }],
 
   /**
