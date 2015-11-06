@@ -4,6 +4,9 @@
 1.1.2 enable automatic login in users/groups, login options, Automatic login
 1.1.1 do homebrew installs
 ...python...
+...node
+install pm2, and set to start at startup
+ensure that .ssh key for git.corp.yahoo.com has no passphrase (required for pm2 deploy)
 
 1.2 setup ssh
 ...create ~/.ssh dir
@@ -18,3 +21,6 @@ npm install pm2 -g
 pm2 update
 
 pm2 start server.js --name "guerilla-worker" -- --worker
+
+pm2 deploy ecosystem-worker.json dev setup
+pm2 deploy ecosystem-worker.json dev

@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# for pm2 to work the git ssh key must have no passphrase
 
 echo "first update .bash_profile per brew directions. Sample is provided in the ../sample.bash_profile.sh"
 while true; do
