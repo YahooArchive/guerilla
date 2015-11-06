@@ -1,0 +1,41 @@
+{
+  /**
+   * Application configuration section
+   * http://pm2.keymetrics.io/docs/usage/application-declaration/
+   */
+  apps : [{
+    // Worker
+    "name"        : "guerilla-worker",
+    "script"      : "server.js",
+    "args"        : ["--master"],
+    "watch"       : false,
+    "node_args"   : "--harmony",
+    "cwd"         : "/var/www/development/master/source"
+  }],
+
+  /**
+   * Deployment section
+   * http://pm2.keymetrics.io/docs/usage/deployment/
+   */
+  deploy : {
+    production : {
+      user : "guser",
+      host : "a.b.c.d",
+      ref  : "origin/deploy-nyc1",
+      repo : "git@github.com:repo.git",
+      path : "/Users/guser/Workspace/worker",
+      "post-deploy" : "npm install ; pm2 startOrRestart ecosystem-worker.json --env production"
+    },
+    dev : {
+      user : "guser",
+      host : "172.16.221.128",
+      ref  : "origin/deploy-nyc1",
+      repo : "git@git.corp.yahoo.com:bruceg/yahoo-guerilla.git",
+      path : "/var/www/development/master",
+      "post-deploy" : "npm install ; pm2 startOrRestart ecosystem-master.json --env dev",
+      env  : {
+        NODE_ENV: "dev"
+      }
+    }
+  }
+}
