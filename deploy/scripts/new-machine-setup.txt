@@ -8,9 +8,12 @@
 install pm2, and set to start at startup
 ensure that .ssh key for git.corp.yahoo.com has no passphrase (required for pm2 deploy)
 adjust vm per https://github.com/Unitech/pm2-deploy/issues/41
-... BEGIN add the following to ~/guser/.bashrc
+... BEGIN add the following to ~/guser/.bashrc  changing reasonfeed-vm as appropriate
 #needed for pm2 post-deploy
 export PATH=~/bin:/usr/local/bin:usr/bin:$PATH
+export GuerillaHostName=reasonfeed-vm
+export GuerillaConfigFileWorker=/var/www/development/worker/source/deploy/config/reasonfeed-vm/config/worker/config.json
+export GuerillaConfigFileWorker=/var/www/development/master/source/deploy/config/reasonfeed-vm/config/master/config.json
 ... END add
 
 

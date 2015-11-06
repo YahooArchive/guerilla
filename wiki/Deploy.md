@@ -22,7 +22,7 @@ of node modules to git to ensure that all of the servers are identical. A possib
 feature.
 
 Key notes:
-We setup .bashrc 
+We setup .bashrc because PM2's remote usage is not interactive and therefore doesn't use .bash_profile
 We required a no-passphrase git ssh key
 We setup Env Vars to point to our config files
 We setup our configs  as a directory tree..,
@@ -51,3 +51,21 @@ Question: can our vms go to a single place for their output dir, and we map that
 ```pm2 deploy ecosystem-master.json dev exec "pm2 start all"```
 
 ```pm2 deploy ecosystem-worker.json dev exec "pm2 start all"```
+
+#### Update
+
+```pm2 deploy ecosystem-master.json dev update```
+
+```pm2 deploy ecosystem-worker.json dev update```
+
+#### Display status
+
+```pm2 deploy ecosystem-master.json dev exec "pm2 list"```
+
+```pm2 deploy ecosystem-master.json dev exec "pm2 list"```
+
+#### Stop a server
+
+```pm2 deploy ecosystem-master.json dev exec "pm2 delete guerilla-master"```
+
+```pm2 deploy ecosystem-worker.json dev exec "pm2 delete guerilla-worker"```
