@@ -53,7 +53,7 @@ Question: can our vms go to a single place for their output dir, and we map that
 ```pm2 deploy ecosystem-worker.json dev exec "pm2 start all"```
 
 #### Update
-updates then restarts or starts
+updates then restarts or starts the application. Also starts pm2 if it isn't started.
 
 ```pm2 deploy ecosystem-master.json dev update```
 
