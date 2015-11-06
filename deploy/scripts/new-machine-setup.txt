@@ -1,5 +1,5 @@
 
-1 New machine setup
+1 New virtual machine setup
 1.1 enable remote login via preferences/sharing/remotelogin
 1.1.2 enable automatic login in users/groups, login options, Automatic login
 1.1.1 do homebrew installs
@@ -7,6 +7,14 @@
 ...node
 install pm2, and set to start at startup
 ensure that .ssh key for git.corp.yahoo.com has no passphrase (required for pm2 deploy)
+adjust vm per https://github.com/Unitech/pm2-deploy/issues/41
+... BEGIN add the following to ~/guser/.bashrc
+#needed for pm2 post-deploy
+export PATH=~/bin:/usr/local/bin:usr/bin:$PATH
+... END add
+
+
+
 
 1.2 setup ssh
 ...create ~/.ssh dir
