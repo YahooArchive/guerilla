@@ -5,7 +5,7 @@
    */
   apps : [{
     // Worker
-    "name"        : "guerilla-worker",
+    "name"        : "guerilla-master",
     "script"      : "server.js",
     "args"        : ["--master"],
     "watch"       : false,
