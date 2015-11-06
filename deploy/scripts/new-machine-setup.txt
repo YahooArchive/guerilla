@@ -13,7 +13,7 @@ adjust vm per https://github.com/Unitech/pm2-deploy/issues/41
 export PATH=~/bin:/usr/local/bin:usr/bin:$PATH
 export GuerillaHostName=reasonfeed-vm
 export GuerillaConfigFileWorker=/var/www/development/worker/source/deploy/config/reasonfeed-vm/config/worker/config.json
-export GuerillaConfigFileWorker=/var/www/development/master/source/deploy/config/reasonfeed-vm/config/master/config.json
+export GuerillaConfigFileMaster=/var/www/development/master/source/deploy/config/reasonfeed-vm/config/master/config.json
 ... END add
 
 
