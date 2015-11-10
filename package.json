@@ -52,6 +52,7 @@
         "redis-lock": "^0.1.0",
         "request": "^2.51.0",
         "serve-favicon": "^2.3.0",
+        "temp": "^0.8.3",
         "underscore": "^1.8.3",
         "yargs": "^3.15.0"
     }
