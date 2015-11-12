@@ -43,7 +43,11 @@ module.exports.execute = function execute (params, context, exec, callback) {
 
 			var args = [];
 			args.push('-sdk');
-			args.push('iphoneos');
+			var isSimulator = context.device.simulator;
+			logger.i("xcrun:isSimulator=" + isSimulator);
+			logger.i("xcrun:context.device=" + JSON.stringify(context.device))
+			var sdkArg = isSimulator ? "iphonesimulator" : "iphoneos";
+			args.push(sdkArg);
 			args.push('xcodebuild');
 			args.push('-workspace');
 			args.push(params.workspace + '.xcworkspace');
@@ -54,10 +58,12 @@ module.exports.execute = function execute (params, context, exec, callback) {
 				args.push(params.configuration);
 			}
 			args.push('-sdk');
-			args.push('iphoneos');
+			args.push(sdkArg);
+
 			if (context.device_identifier) {
+				var destArg = isSimulator ?  context.device.destination : 'platform=iOS,id=' + context.device_identifier;
 				args.push('-destination');
-				args.push('platform=iOS,id=' + context.device_identifier);
+				args.push(destArg);
 			}
 			args.push('-derivedDataPath');
 			args.push(context.build_dir);
