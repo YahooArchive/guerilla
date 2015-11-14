@@ -61,7 +61,10 @@ module.exports.execute = function execute (params, context, exec, callback) {
 			args.push(sdkArg);
 
 			if (context.device_identifier) {
-				var destArg = isSimulator ?  context.device.destination : 'platform=iOS,id=' + context.device_identifier;
+				//for simulator a sample destination is 'platform=iOS Simulator,name=iPhone 6,OS=9.1'
+				var destArg = isSimulator ?
+					'platform=iOS Simulator,' + context.device.destination  :
+					'platform=iOS,id=' + context.device_identifier;
 				args.push('-destination');
 				args.push(destArg);
 			}
