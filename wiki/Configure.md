@@ -38,8 +38,12 @@ Copy `config/worker/config.json.sample` to `config/worker/config.json`
     + `port` **Integer** - Port of the Redis server that Guerilla should connect to. Master and all workers need to connect to the same Redis instance.
 - `devices` **Array(Object)** *Optional* - Information regarding connected devices.
     + `tag` **String** - A tag to indentify a type of device. This tag is used when specifying what kind of device to run a job on. For simulated
-    devices the string must be of the form ```ios-simulator,OS=x.y,name=a-device-name```. To get the specific device names and os versions available
-    on your device run ```xcrun simctl -list```. For the OS value only use the numeric portion of the OS.
+    devices the string must be of the form ```ios-simulator,OS=x.y,name=a-device-name```. For example ```"ios-simulator,OS=9.1,name=iPhone 6"```.
+    You can use the Guerilla web UI to see the available simulated devices.
+    From the home Guerilla screen choose "workers", then select a sepcific worker and choose "Devices". You need to 
+    enter a tag matching one of the listed tags. At runtime any workers with a matching tag are eligible to run the job.
+    At startup Guerilla finds the names and os versions 
+    available on your device by running ```xcrun simctl -list```.
     + `platform` **String** - "ios" or "android".
     + `name` **String** - Name and description of the device. 
     + `identifier` **String** - UDID (iOS) or serial (Android) or the device.
