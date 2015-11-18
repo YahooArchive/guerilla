@@ -13,7 +13,7 @@ Make sure you have:
 
 
 #### Simulators
-At startup, each worker scans the available IOS Simulators by runing ```xcrun simctl list```. From the resulting output it 
+At startup, each worker scans the available IOS Simulators on its OS by runing ```xcrun simctl list```. From the resulting output it 
 synthesizes additional worker devices which are added to those already in the worker's config.json. E.G from the following output from running```xcrun simctl list``` 
 
 
@@ -45,7 +45,7 @@ Guerilla will create synthetic devices as if the worker's config.json had the fo
 
 		{   "tag": "ios-simulator,OS=8.4,name=iPhone 6",
 		    "platform": "ios",
-		    "name:": "ios-simulator,OS=8.4,name=iPhone 6",
+		    "name:": "ios-simulator iPhone 6 (8.4)",
 		    "identifier": "D1B55351-8D27-4803-BBC5-DD0EDB4AC3F0",
 		    "OS": "8.4",
 		    "simulator": "true",
@@ -53,7 +53,7 @@ Guerilla will create synthetic devices as if the worker's config.json had the fo
 		},
 		{   "tag": "ios-simulator,OS=9.1,name=iPhone 6",
 		    "platform": "ios",
-		    "name:": "ios-simulator,OS=8.4,name=iPhone 6",
+		    "name:": "ios-simulator iphone 6 (8.4)",
 		    "identifier": "F0FFDBFA-7BDC-4577-82F8-816D09797AC7",
 		    "OS": "9.1":
 		    "simulator": "true",
@@ -62,4 +62,4 @@ Guerilla will create synthetic devices as if the worker's config.json had the fo
 			...
 ```
 
-These sythesized entries are available in the info logging output.
+These synthesized entries are visible along with the standard config device entries via the web ui for each worker.

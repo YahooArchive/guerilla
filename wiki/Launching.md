@@ -28,8 +28,19 @@ Note: for the above 3 cases ~ and relative paths are allowed in the path.
 
 Otherwise the config file defaults to ```./config/{master|worker}/config.json```
 
+#### Saving Temp Files
+For debugging purposes it may be useful to save Guerilla's temporary directory. This is where git clones reside and building occurs.
+The temporary directory is in the OS's
+temporarily file location, and is normally deleted at program exit. With the --saveTempFiles option, the temporary directory
+will not be explictly deleted at program exit. Additionally the location of the directory is logged to the standard output as in
+```The temporary directory is: /var/folders/kn/86m_td_94555_yn37ch2zvdr002j1q/T/guerillatemp1151016-20048-13cuks0``` Note that 
+the temporary directory always has the ```guerillatemp``` prefix.
+
+Remember that each time Guerilla processes a job it forks a new worker to execute it, and that worker will have its own distinct 
+temporary directory.
+
 #### Starting syntax
 
-Master: `node server.js --master [--config configFilePath]`
+Master: `node server.js --master [--config configFilePath] {--saveTempFiles}`
 
-Worker: `node server.js --worker [--config configFilePath]`
+Worker: `node server.js --worker [--config configFilePath] {--saveTempFiles}`
