@@ -16,6 +16,7 @@ An instance of Guerilla manages jobs and provides a UI to view job results. A jo
 * [Guerilla Tasks](wiki/Tasks.md)
 * [Custom Tasks](wiki/CustomTasks.md)
 * [Guerilla on VMs](wiki/VM.md)
+* [Deploying to a farm](wiki/Deploy.md)
 * [FAQs](wiki/FAQs.md)
 
 ### License

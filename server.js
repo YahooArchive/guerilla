@@ -6,18 +6,26 @@
  * Entry point for the Guerilla server.
  */
 
-require('./lib/globals');
-var argv = require('yargs').argv;
+var git = require('git-rev');
+git.long(function (str) {
 
-if (argv.master) {
-	require('./master.js');
-}
-else if (argv.worker) {
-	require('./worker.js');
-}
-else {
-	throw new Error('Must run with --master or --worker.');
-}
+	require('./lib/globals');
+
+	logger.i("Guerilla git sha = " + str);
+
+	var argv = require('yargs').argv;
+
+	if (argv.master) {
+		require('./master.js');
+	}
+	else if (argv.worker) {
+		require('./worker.js');
+	}
+	else {
+		throw new Error('Must run with --master or --worker.');
+	}
+
+})
 
 function shutdown (callback) {
 	var queue = require('./lib/queue');

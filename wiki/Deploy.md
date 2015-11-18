@@ -14,6 +14,8 @@ command is
 
 ```vmrun addSharedFolder ~/Documents/Virtual\ Machines.localized/OS\ X\ 10.10.vmwarevm/OS\ X\ 10.10.vmx hostDataDir ~/Documents/sharing/guerilla/reasonfeed-vm/DataDir```
 
+```vmrun setSharedFolderState ~/Documents/Virtual\ Machines.localized/OS\ X\ 10.10.vmwarevm/OS\ X\ 10.10.vmx hostDataDir ~/Documents/sharing/guerilla/reasonfeed-vm/DataDir writable```
+
 where "reasonfeed-lm" is a unique identifier for the VM. This way >1 vm can share the host's file system. The vm will use
 the path ```~/Desktop/VMware\ Shared\ Folders/hostDataDir/```
 
