@@ -12,7 +12,7 @@ module.exports.validate = function validate () {
 	return {
 		context: {
 			app_path: 'required',
-			device_identifier: 'required'
+			device: 'required'
 		}
 	};
 };
@@ -27,7 +27,7 @@ module.exports.execute = function execute (params, context, exec, callback) {
 
 	var args = [];
 	args.push('-i');
-	args.push(context.device_identifier);
+	args.push(context.device.identifier);
 	args.push('-b');
 	args.push(context.app_path);
 	args.push('-t');

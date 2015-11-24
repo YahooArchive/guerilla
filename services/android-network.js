@@ -73,7 +73,7 @@ AndroidNetwork.prototype.start = function (packageName, callback) {
 
 			var args = [];
 			args.push('-c');
-			args.push('adb -s ' + self.context.device_identifier + ' shell dumpsys package ' + packageName + ' | grep userId=');
+			args.push('adb -s ' + self.context.device.identifier + ' shell dumpsys package ' + packageName + ' | grep userId=');
 
 			var buffer = '';
 			function stdout (data) {
@@ -96,7 +96,7 @@ AndroidNetwork.prototype.start = function (packageName, callback) {
 
 		var args = [];
 		args.push('-s');
-		args.push(self.context.device_identifier);
+		args.push(self.context.device.identifier);
 		args.push('shell');
 		args.push('cat proc/uid_stat/' + uid + '/tcp_snd ; cat proc/uid_stat/' + uid + '/tcp_rcv');
 

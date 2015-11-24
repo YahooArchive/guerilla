@@ -19,7 +19,7 @@ iOSSystemLog.prototype.start = function (callback) {
 
 	var args = [];
 	args.push('-u');
-	args.push(this.context.device_identifier);
+	args.push(this.context.device.identifier);
 
 	var options = { 
 		log: [true, false, false, false], 

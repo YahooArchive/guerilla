@@ -25,7 +25,7 @@ module.exports.validate = function validate () {
 				if (!p.package_name && p.apk_name) return (c.apk_dir) ? true : false;
 				return true;
 			},
-			device_identifier: 'required'
+			device: 'required'
 		}
 	};
 };
@@ -47,7 +47,7 @@ module.exports.execute = function execute (params, context, exec, callback) {
 
 			var args = [];
 			args.push('-s');
-			args.push(context.device_identifier);
+			args.push(context.device.identifier);
 			args.push('shell');
 			args.push('am');
 			args.push('force-stop');

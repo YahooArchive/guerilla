@@ -16,7 +16,7 @@ module.exports.validate = function validate () {
 			start_date: 'optional'
 		},
 		context: {
-			device_identifier: 'required',
+			device: 'required',
 			app_path: 'required'
 		}
 	};
@@ -32,7 +32,7 @@ module.exports.execute = function execute (params, context, exec, callback) {
 
 			var args = [];
 			args.push('ios-extract-device-logs.scpt');
-			args.push(context.device_identifier);
+			args.push(context.device.identifier);
 			args.push(context.output_dir);
 			args.push(startDate.toString());
 

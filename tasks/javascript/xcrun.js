@@ -24,9 +24,9 @@ module.exports.validate = function validate () {
 		},
 		context: {
 			project_root: 'required',
-			device_identifier: function (p, c) {
+			device: function (p, c) {
 				if (p.build_actions && Array.isArray(p.build_actions)) {
-					if ((p.build_actions.indexOf('test') > -1) && !c.device_identifier) 
+					if ((p.build_actions.indexOf('test') > -1) && !c.device)
 						return false;
 				}
 				return true;
@@ -54,7 +54,7 @@ function executeTest(params, context, exec, callback) {
 
 	var commandLineTemplate =
 		'cd {cwd} && ' +
-		'killall "Simulator"; ' + //Cannot use && as we may get error "no match processes belonging to you were found" and a return code > 0.
+		'"killall \'Simulator\'"; ' + //Cannot use && as we may get error "no match processes belonging to you were found" and a return code > 0.
 		'xcrun simctl erase all &&' +
 		'xcrun -sdk {sdk} xcodebuild ' +
 		'-destination "{destination}" ' +
@@ -70,7 +70,7 @@ function executeTest(params, context, exec, callback) {
 	var sdk = isSimulator ? "iphonesimulator" : "iphoneos";
 	var destination = isSimulator ?
 		'platform=iOS Simulator,' + context.device.destination :
-		'platform=iOS,id=' + context.device_identifier;
+		'platform=iOS,id=' + context.device.identifier;
 	var workspace = params.workspace + '.xcworkspace';
 	var scheme = params.scheme;
 	var configuration = params.configuration ? '-configuration "' + params.configuration + '"' : '';
@@ -90,21 +90,16 @@ function executeTest(params, context, exec, callback) {
 
 	logger.d("xcrun executeTest command line="+commandLine);
 
-	async.series([
-		function (cb) {
-			var options = {cwd: context.project_root};
-			var child = childexec(commandLine, options,
-				function (error, stdout, stderr) {
-					if (error !== null) {
-						logger.i('exec error: ' + error);
-						return cb(error);
-					}
-					return cb();
-				});
-		}
-	], function (error, results) {
-		callback(error);
-	});
+	var options = {cwd: context.project_root};
+	var child = childexec(commandLine, options,
+		function (error, stdout, stderr) {
+			if (error !== null) {
+				logger.i('exec error: ' + error);
+				return callback(error);
+			}
+			return callback();
+		});
+
 }
 
 /**
@@ -139,11 +134,11 @@ function executeNoTest(params, context, exec, callback) {
 			args.push('-sdk');
 			args.push(sdkArg);
 
-			if (context.device_identifier) {
+			if (context.device) {
 				//for simulator a sample destination is 'platform=iOS Simulator,name=iPhone 6,OS=9.1'
 				var destArg = isSimulator ?
 				'platform=iOS Simulator,' + context.device.destination :
-				'platform=iOS,id=' + context.device_identifier;
+				'platform=iOS,id=' + context.device.identifier;
 				args.push('-destination');
 				args.push(destArg);
 			}

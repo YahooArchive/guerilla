@@ -22,7 +22,7 @@ AndroidScreenshot.prototype.snap = function (callback) {
 
 	var args = [];
 	args.push('-c');
-	args.push('adb -s ' + this.context.device_identifier + ' shell screencap -p | perl -pe "s/\\x0D\\x0A/\\x0A/g" > ' + filename);
+	args.push('adb -s ' + this.context.device.identifier + ' shell screencap -p | perl -pe "s/\\x0D\\x0A/\\x0A/g" > ' + filename);
 
 	var options = { cwd: this.context.output_dir };
 

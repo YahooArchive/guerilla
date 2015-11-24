@@ -18,7 +18,7 @@ module.exports.validate = function validate () {
 			trace_template: 'optional'
 		},
 		context: {
-			device_identifier: 'required',
+			device: 'required',
 			app_path: 'required',
 			project_root: 'required'
 		}
@@ -48,7 +48,7 @@ module.exports.execute = function execute (params, context, exec, callback) {
 
 			var args = [];
 			args.push('-w');
-			args.push(context.device_identifier);
+			args.push(context.device.identifier);
 			args.push('-D');
 			args.push(path.join(context.output_dir, 'Instruments'));
 			args.push('-t');

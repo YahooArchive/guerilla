@@ -22,7 +22,7 @@ Logcat.prototype.start = function (callback) {
 
 	var args = [];
 	args.push('-s');
-	args.push(self.context.device_identifier);
+	args.push(self.context.device.identifier);
 	args.push('logcat');
 	args.push('-v');
 	args.push('time');
