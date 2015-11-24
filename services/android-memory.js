@@ -91,7 +91,7 @@ AndroidMemory.prototype.start = function (packageName, callback) {
 
 		var args = [];
 		args.push('-s');
-		args.push(self.context.device_identifier);
+		args.push(self.context.device.identifier);
 		args.push('shell');
 		args.push('dumpsys');
 		args.push('meminfo');

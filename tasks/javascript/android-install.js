@@ -15,7 +15,7 @@ module.exports.validate = function validate () {
 		},
 		context: {
 			apk_dir: 'required',
-			device_identifier: 'required'
+			device: 'required'
 		}
 	};
 };
@@ -31,7 +31,7 @@ module.exports.execute = function execute (params, context, exec, callback) {
 
 	var args = [];
 	args.push('-s');
-	args.push(context.device_identifier);
+	args.push(context.device.identifier);
 	args.push('install');
 	args.push('-r');
 	args.push(path.join(context.apk_dir, params.apk_name));
