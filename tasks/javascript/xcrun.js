@@ -54,7 +54,7 @@ function executeTest(params, context, exec, callback) {
 
 	var commandLineTemplate =
 		'cd {cwd} && ' +
-		'"killall \'Simulator\'"; ' + //Cannot use && as we may get error "no match processes belonging to you were found" and a return code > 0.
+		'killall "Simulator"; ' + //Cannot use && as we may get error "no match processes belonging to you were found" and a return code > 0.
 		'xcrun simctl erase all &&' +
 		'xcrun -sdk {sdk} xcodebuild ' +
 		'-destination "{destination}" ' +
