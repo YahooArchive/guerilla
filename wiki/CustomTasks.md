@@ -31,7 +31,7 @@ return {
         }
     },
     context: {
-        device_identifier: 'required'
+        device: 'required'
     }
 };
 ```
@@ -74,7 +74,7 @@ The context object is initiated with certain properties and helper functions at 
 - `bin_dir` **String** - Path to the directory containing utilities scripts and libraries that aren't available through NPM.
 - `output_dir` **String** - Path to the directory where the task should write all files to. Any files in this directory will be available for the user to download from the results page. 
 - `working_dir` **String** - This directory is where the project is checked out from GitHub and compiled.
-- `device_identifier` **String** - The UDID or serial number of the device. This will be undefined if no device was specified.
+- `device` **String** - The A Device object that represent the device, or undeifined if no device was specified.
 - `log(string, callback)` **Function** - Logs to the console.txt file.
     + `string` **String** - The string to log.
     + `callback(error)` **Function** *Optional* - Called when finished writing to the log file.
