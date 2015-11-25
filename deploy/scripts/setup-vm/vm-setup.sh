@@ -13,6 +13,7 @@ done
 source ~/.bash_profile
 xcode-select --install
 ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+sudo gem install xcpretty
 brew update
 brew doctor
 brew install git

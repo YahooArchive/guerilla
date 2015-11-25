@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-
+echo install vmware fusion after the vms have been downloaded
 echo "first update .bash_profile per brew directions. Sample is provided in yahoo guerilla branch"
 while true; do
     read -p "Do you wish to continue program?" yn
@@ -10,6 +10,8 @@ while true; do
     esac
 done
 source ~/.bash_profile
+mkdir -p /Users/bruceg/Documents/sharing/guerilla/GuerillaHostName1/DataDir
+mkdir -p /Users/bruceg/Documents/sharing/guerilla/GuerillaHostName2/DataDir
 xcode-select --install
 ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 brew update
@@ -19,8 +21,8 @@ brew install python
 pip install plumbum
 pip install sh
 brew upgrade
-brew install node
-npm install pm2 -g
+#brew install node
+#npm install pm2 -g
 brew cleanup
 exit 0
 

@@ -7,7 +7,7 @@
     // Worker
     "name"        : "guerilla-worker",
     "script"      : "server.js",
-    "args"        : ["--worker"],
+    "args"        : ["--worker", "--config", "/hostDataDir/configworker.json"],
     "watch"       : false,
     "node_args"   : "--harmony",
     "cwd"         : "/var/www/development/worker/source"

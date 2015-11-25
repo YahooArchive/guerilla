@@ -7,7 +7,7 @@
     // Worker
     "name"        : "guerilla-master",
     "script"      : "server.js",
-    "args"        : ["--master"],
+    "args"        : ["--master", "--config", "/hostDataDir/configmaster.json"],
     "watch"       : false,
     "node_args"   : "--harmony",
     "cwd"         : "/var/www/development/master/source"

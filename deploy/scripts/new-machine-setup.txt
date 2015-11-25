@@ -5,6 +5,7 @@
 1.1.1 do homebrew installs
 ...python...
 ...node
+install xcpretty: sudo gem install xcpretty
 install pm2, and set to start at startup
 ensure that .ssh key for git.corp.yahoo.com has no passphrase (required for pm2 deploy)
 adjust vm per https://github.com/Unitech/pm2-deploy/issues/41
@@ -21,8 +22,11 @@ export GuerillaConfigFileMaster=/var/www/development/master/source/deploy/config
 
 1.2 setup ssh
 ...create ~/.ssh dir
-1.5 from a develop machine
-1.5.1 vmrun clone ~/Documents/Virtual\ Machines.localized/OS\ X\ 10.10.vmwarevm/OS\ X\ 10.10.vmx  /Volumes/startech/GuerillaVMv3.vmx full
+1.5 from a develop machine. Make sure device is shutdown
+1.5.0 vmrun stop ~/Documents/Virtual\ Machines.localized/OS\ X\ 10.10.vmwarevm/OS\ X\ 10.10.vmx
+1.5.1 vmrun clone ~/Documents/Virtual\ Machines.localized/OS\ X\ 10.10.vmwarevm/OS\ X\ 10.10.vmx  /Volumes/startech/vm3/GuerillaVMv3.vmx full
+1.5.1.1 vmrun clone /Volumes/startech/vm3/GuerillaVMv3.vmx /Volumes/startech/vm3/GuerillaVMv3-linked1.vmx linked
+1.5.1.2 vmrun clone /Volumes/startech/vm3/GuerillaVMv3.vmx /Volumes/startech/vm3/GuerillaVMv3-linked2.vmx linked
 1.5.1.0 brew install ssh-copy-id
 1.5.1.1 ssh-copy-id -i ~/.ssh/id_rsa.pub remote-host
 1.5.1.2 ssh remote-host #to verify
