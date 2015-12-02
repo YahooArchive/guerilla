@@ -10,8 +10,6 @@ while true; do
     esac
 done
 source ~/.bash_profile
-mkdir -p /Users/bruceg/Documents/sharing/guerilla/GuerillaHostName1/DataDir
-mkdir -p /Users/bruceg/Documents/sharing/guerilla/GuerillaHostName2/DataDir
 xcode-select --install
 ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 brew update
