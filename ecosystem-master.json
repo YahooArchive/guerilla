@@ -10,7 +10,8 @@
     "args"        : ["--master", "--config", "/hostDataDir/configmaster.json"],
     "watch"       : false,
     "node_args"   : "--harmony",
-    "cwd"         : "/var/www/development/master/source"
+    "cwd"         : "/var/www/development/master/source",
+    "log_date_format" : "YYYY-MM-DD HH:mm Z"
   }],
 
   /**

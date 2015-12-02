@@ -7,10 +7,11 @@
     // Worker
     "name"        : "guerilla-worker",
     "script"      : "server.js",
-    "args"        : ["--worker", "--config", "/hostDataDir/configworker.json"],
+    "args"        : ["--worker", "--config", "/hostDataDir/configworker.json ", "--foo2"],
     "watch"       : false,
     "node_args"   : "--harmony",
-    "cwd"         : "/var/www/development/worker/source"
+    "cwd"         : "/var/www/development/worker/source",
+    "log_date_format" : "YYYY-MM-DD HH:mm Z"
   }],
 
   /**
@@ -28,7 +29,16 @@
     },
     dev : {
       user : "guser",
-      host : "172.16.221.128",
+      host : [
+              {
+                host : "chanceneedle-dm.nytimes.corp.yahoo.com",
+                port : "58021"
+              },
+              {
+                host : "chanceneedle-dm.nytimes.corp.yahoo.com",
+                port : "58022"
+              }
+            ],
       ref  : "origin/deploy-nyc1",
       repo : "git@git.corp.yahoo.com:bruceg/yahoo-guerilla.git",
       path : "/var/www/development/worker",
