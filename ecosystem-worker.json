@@ -28,7 +28,16 @@
     },
     dev : {
       user : "guser",
-      host : "172.16.221.128",
+      host : [
+              {
+                host : "chanceneedle-dm.nytimes.corp.yahoo.com",
+                port : "58021"
+              },
+              {
+                host : "chanceneedle-dm.nytimes.corp.yahoo.com",
+                port : "58022"
+              }
+            ],
       ref  : "origin/deploy-nyc1",
       repo : "git@git.corp.yahoo.com:bruceg/yahoo-guerilla.git",
       path : "/var/www/development/worker",
