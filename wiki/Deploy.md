@@ -37,6 +37,21 @@ Verify that the ansible has ssh rights to each machine. (FLESH OUT).
 Verify that you can access each ansible machine ```ansible all -i deploy/scripts/ansible/production-inventory -u{id} -a "/bin/echo hello"``` where {id} is a user that
 has rights to the target machine.
 
+Create your vms. We are currently using linked clones, as that has a smaller file footprint, and responds well to rsysnc
+cloning. It has an undesirable side-effect of asking where the parent is the first time you start the linked vm, so this 
+gets in the way of automation.
+
+Ensure that fusion is not running on the target machines.
+
+Deploy the vms via the script file deploy-vms.sh (cd to the ansible directory first).
+
+start the vms up, and when prompted locate the parent .vmx file which ideally is in the same directory, and when prompted respond that the VM was copied.
+
+We recommend setting the host machines user login to start vmfusion at startup via the System preferences- Users & Groups -> Login Items
+
+Additionally have Fusion start the 2 vms each time VMFusion starts up via TOBEFILLEDIN
+
+
 
 ### Key Misc Notes
 

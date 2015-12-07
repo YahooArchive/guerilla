@@ -10,7 +10,8 @@
     "args"        : ["--worker", "--config", "/hostDataDir/configworker.json"],
     "watch"       : false,
     "node_args"   : "--harmony",
-    "cwd"         : "/var/www/development/worker/source"
+    "cwd"         : "/var/www/development/worker/source",
+    "log_date_format" : "YYYY-MM-DD HH:mm Z"
   }],
 
   /**
