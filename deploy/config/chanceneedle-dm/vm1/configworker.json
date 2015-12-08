@@ -2,6 +2,7 @@
 	"name": "chanceneedle-dm vm1",
 	"host": "http://chanceneedle-dm.nytimes.corp.yahoo.com",
 	"port": 8889,
+	"data_dir": "/hostDataDir/results",
 	"db": {
 		"driver": "redis",
 		"host": "freshcaptain-dm.nytimes.corp.yahoo.com",
