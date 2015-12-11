@@ -40,7 +40,7 @@
         "git-rev": "^0.2.1",
         "hiredis": "^0.4.0",
         "ios-deploy": "^1.8.0",
-        "kue": "git://github.com/Automattic/kue.git#master",
+        "kue": "^0.10.4",
         "less-middleware": "^2.0.1",
         "moment": "^2.10.3",
         "morgan": "^1.5.1",
