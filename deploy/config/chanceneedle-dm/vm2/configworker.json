@@ -6,7 +6,8 @@
 	"db": {
 		"driver": "redis",
 		"host": "freshcaptain-dm.nytimes.corp.yahoo.com",
-		"port": 6379
+	  	"port": 6379,
+	  	"password": ""
 	},
 	"devices": [
 		{
