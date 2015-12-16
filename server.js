@@ -37,16 +37,16 @@ process.on('exit', function(code){
 
 process.on('SIGINT', function () {
 	logger.w('\nSIGINT --- EXITING');
-	shutdown(process.exit);
+	shutdown(function() {process.exit});
 });
 
 process.on('SIGTERM', function () {
 	logger.w('\nSIGTERM --- EXITING');
-	shutdown(process.exit);
+	shutdown(function() {process.exit});
 });
 
 process.on('uncaughtException', function (ex) {
 	logger.e('EXITING: Uncaught Exception');
 	logger.e(ex.stack);
-	shutdown(process.exit);
+	shutdown(function() {process.exit});
 });
