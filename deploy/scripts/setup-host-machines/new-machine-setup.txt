@@ -1,0 +1,6 @@
+1 New host machine setup
+1.1 enable remote login via preferences/sharing/remotelogin
+1.1.2 enable automatic login in users/groups, login options, Automatic login
+1.1.1 do homebrew installs
+...python...
+...node

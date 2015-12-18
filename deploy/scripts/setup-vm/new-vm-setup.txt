@@ -1,4 +1,3 @@
-
 1 New virtual machine setup
 1.1 enable remote login via preferences/sharing/remotelogin
 1.1.2 enable automatic login in users/groups, login options, Automatic login
@@ -16,7 +15,7 @@ export PATH=~/bin:/usr/local/bin:usr/bin:$PATH
 
 
 
-
+TODO: parameterize following wrt VMs
 1.2 setup ssh
 ...create ~/.ssh dir
 1.5 from a develop machine. Make sure device is shutdown
