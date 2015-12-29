@@ -1,23 +1,35 @@
 1 New virtual machine setup
 1.0 on dev host that will create the new vm, setup port forwarding in nat.conf  so that incomingtcp section has
-TODO: use ansible to update this depending on the vm ipaddress
 ---begin nat.conf fragment
 # following for ssh to vm with ip address 172.16.221.139 used by Ansible
 50022 = 172.16.221.139:22
 --end nat.conf fragment.
+TODO: use ansible to update the above depending on the vm ipaddress
+
 1.1 enable remote login via preferences/sharing/remotelogin
+
 1.1.2 enable automatic login in users/groups, login options, Automatic login
+
 1.1.1 run vm-setup.sh
 
-install pm2, and set to start at startup (todo: is 'pm2 list' sufficient)
+install pm2, and set to start at startup (todo: is 'pm2 list' sufficient?)
+
 ensure that .ssh key for git.corp.yahoo.com has no passphrase (required for pm2 deploy)
+
 adjust vm per https://github.com/Unitech/pm2-deploy/issues/41
 ... BEGIN add the following to ~/guser/.bashrc  changing reasonfeed-vm as appropriate
 #needed for pm2 post-deploy
 export PATH=~/bin:/usr/local/bin:usr/bin:$PATH
 ... END add
 
+FUSION
+
 set vmware fusion usb compatibility to 2.0.
+rename vm as appropriate
+sharing name=hostDataDir folder ==DataDir
+Processors: 2 processor cores
+Memory: 6156 mb
+network Adapter: share With my mac
 
 
 
