@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+#run this on each host machine. TODO: use Ansible
 echo install vmware fusion after the vms have been downloaded
 echo "first update .bash_profile per brew directions. Sample is provided in yahoo guerilla branch"
 while true; do
@@ -16,7 +17,6 @@ brew update
 brew doctor
 brew install git
 brew install python
-pip install plumbum
 pip install sh
 brew upgrade
 #brew install node

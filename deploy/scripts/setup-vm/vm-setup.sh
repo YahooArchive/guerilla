@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # for pm2 to work the git ssh key must have no passphrase
 
-echo "first update .bash_profile per brew directions. Sample is provided in the ../sample.bash_profile.sh"
+echo "first update .bash_profile and .bashrc using supplied sample files is this directory."
 while true; do
     read -p "Do you wish to continue program?" yn
     case $yn in
@@ -10,17 +10,25 @@ while true; do
         * ) echo "Please answer yes or no.";;
     esac
 done
-source ~/.bash_profile
 xcode-select --install
 ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-sudo gem install xcpretty
 brew update
 brew doctor
+#upgrade everything.
+brew upgrade
+brew install android-sdk
+source ~/.bash_profile
+expect -c '
+set timeout -1;
+spawn android - update sdk --no-ui;
+expect {
+    "Do you accept the license" { exp_send "y\r" ; exp_continue }
+    eof
+}
+'
+sudo gem install xcpretty
 brew install git
 brew install python
-pip install plumbum
-pip install sh
-brew upgrade
 brew install node
 npm install pm2 -g
 brew cleanup

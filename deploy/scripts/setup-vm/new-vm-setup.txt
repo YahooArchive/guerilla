@@ -1,17 +1,23 @@
 1 New virtual machine setup
+1.0 on dev host that will create the new vm, setup port forwarding in nat.conf  so that incomingtcp section has
+TODO: use ansible to update this depending on the vm ipaddress
+---begin nat.conf fragment
+# following for ssh to vm with ip address 172.16.221.139 used by Ansible
+50022 = 172.16.221.139:22
+--end nat.conf fragment.
 1.1 enable remote login via preferences/sharing/remotelogin
 1.1.2 enable automatic login in users/groups, login options, Automatic login
-1.1.1 do homebrew installs
-...python...
-...node
-install xcpretty: sudo gem install xcpretty
-install pm2, and set to start at startup
+1.1.1 run vm-setup.sh
+
+install pm2, and set to start at startup (todo: is 'pm2 list' sufficient)
 ensure that .ssh key for git.corp.yahoo.com has no passphrase (required for pm2 deploy)
 adjust vm per https://github.com/Unitech/pm2-deploy/issues/41
 ... BEGIN add the following to ~/guser/.bashrc  changing reasonfeed-vm as appropriate
 #needed for pm2 post-deploy
 export PATH=~/bin:/usr/local/bin:usr/bin:$PATH
 ... END add
+
+set vmware fusion usb compatibility to 2.0.
 
 
 
@@ -31,7 +37,6 @@ TODO: parameterize following wrt VMs
 npm install pm2 -g
 pm2 update
 
-pm2 start server.js --name "guerilla-worker" -- --worker
 
 pm2 deploy ecosystem-worker.json dev setup
 pm2 deploy ecosystem-worker.json dev
