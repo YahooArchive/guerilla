@@ -6,7 +6,6 @@
 
 - hosts: host
   roles:
-    - common
     - vm-deploy
   tasks:
    
