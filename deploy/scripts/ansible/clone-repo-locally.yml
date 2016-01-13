@@ -1,0 +1,11 @@
+
+- hosts: 127.0.0.1
+  connection: local
+  tasks:
+   - name: run clone-repo locally
+     shell: /Users/bruceg/repos/bruceg-yahoo-guerilla/deploy/scripts/ansible/clone-repo-locally.sh
+     register: clone
+
+   - debug: msg="{{ clone.stdout }}"
+
+   - debug: msg="{{ clone.stderr }}"

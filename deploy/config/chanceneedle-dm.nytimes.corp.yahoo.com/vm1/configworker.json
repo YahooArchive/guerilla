@@ -1,0 +1,21 @@
+{
+	"name": "chanceneedle-dm vm1",
+	"host": "http://chanceneedle-dm.nytimes.corp.yahoo.com",
+	"port": 8889,
+	"data_dir": "/hostDataDir/results",
+	"db": {
+		"driver": "redis",
+		"host": "freshcaptain-dm.nytimes.corp.yahoo.com",
+		"port": 6379,
+	    "password": ""
+	},
+	"devices": [
+		{
+			"tag": "5cN",
+			"platform": "ios",
+			"name": "NYC162",
+			"identifier": "0e5ef26051f72cb069b44535a92238cb40458ae6",
+			"OS": "9.1"
+		}
+	]
+}
