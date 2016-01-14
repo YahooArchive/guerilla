@@ -31,6 +31,9 @@ function shutdown (callback) {
 	var queue = require('./lib/queue');
 	queue.shutdown(callback);
 }
+process.on('exit', function(code){
+	logger.d('process.on("exit") event handled in server.js. Exiting process pid=' + process.pid);
+});
 
 process.on('SIGINT', function () {
 	logger.w('\nSIGINT --- EXITING');

@@ -1,0 +1,20 @@
+{
+	"name": "Guerilla Worker X",
+	"host": "http://localhost",
+	"port": 8888,
+    "data_dir": "~/Desktop/VMware Shared Folders/hostDataDir",
+	"db": {
+		"driver": "redis",
+		"host": "localhost",
+		"port": 6379
+	},
+	"devices": [
+		{
+			"tag": "3",
+			"platform": "ios",
+			"name": "nyc-iphone6-1",
+			"identifier": "25274c8c57764ce4b7c57041b26104ba97e5dd9c",
+			"OS": "8.3"
+		}
+	]
+}
