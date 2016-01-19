@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
-#TODO: make 'bruceg' below a variable
-ansible-playbook -i production-inventory -ubruceg -s run-generate-vms-locally.yml
+#TODO: make '$USER' below a variable from vars.yaml
+ansible-playbook -i production-inventory -u$USER -s generate-vms-locally.yml

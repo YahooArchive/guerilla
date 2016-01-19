@@ -10,25 +10,22 @@
   tasks:
    
    - name: Ensure that the copy target vm1 dir exists
-     file: path=/Users/bruceg/Documents/sharing/guerilla/vm1/DataDir state=directory owner=bruceg
+     file: path={{ host_sharing_guerilla_dir }}/vm1/DataDir state=directory owner={{ host_shared_owner }}
 
    - name: Ensure that the copy target vm2 dir exists
-     file: path=/Users/bruceg/Documents/sharing/guerilla/vm2/DataDir state=directory owner=bruceg
+     file: path=path={{ host_sharing_guerilla_dir }}/vm2/DataDir state=directory owner={{ host_shared_owner }}
 
-   - name: copy worker configs for vm1
+   - name: copy worker configs for all vms (currently 2)
      copy: >
-       src=/Users/bruceg/repos/ansible-checkout/bruceg-yahoo-guerilla/deploy/config/{{ inventory_hostname }}/vm1/
-       dest=/Users/bruceg/Documents/sharing/guerilla/vm1/DataDir/configworker.json
-       owner=bruceg
-   
-   - name: copy worker configs for vm2
-     copy:  >
-       src=/Users/bruceg/repos/ansible-checkout/bruceg-yahoo-guerilla/deploy/config/{{ inventory_hostname }}vm2/
-       dest=/Users/bruceg/Documents/sharing/guerilla/vm2/DataDir/configworker.json
-       owner=bruceg
+       src="{{ git_ansible_checkout_dir }}/deploy/config/{{ inventory_hostname }}/{{ item }}/"
+       dest="{{ host_sharing_guerilla_dir }}/{{ item }}/DataDir/configworker.json"
+       owner="{{ host_shared_owner }}""
+     with_items:
+       - vm1
+       - vm2
 
    - name: sync vms
-     synchronize: src=/Volumes/startech/vm3 dest="/Users/bruceg/Documents/VMs" archive=yes perms=yes recursive=yes
+     synchronize: src={{ target_vm_dir }} dest="{{ host_vm_dir_parent }}" archive=yes perms=yes recursive=yes
 
    - name: stat dhcpd.config
      stat: path="/Library/Preferences/VMware Fusion/vmnet8/dhcpd.conf.orig"

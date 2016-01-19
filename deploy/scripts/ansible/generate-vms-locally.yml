@@ -4,7 +4,7 @@
   tasks:
    - include vars.yml
    - name: generate vms locally
-     shell: /Users/bruceg/repos/bruceg-yahoo-guerilla/deploy/scripts/ansible/generate-vms-locally.sh
+     shell: "{{  package_dir }}/generate-vms-locally.sh"
      register: generate
 
    - debug: msg="{{ generate.stdout }}"
@@ -19,13 +19,13 @@
        line: "{{ item.line }}"
      with_items:
        - { regexp: 'ethernet0.addressType' line: 'ethernet0.addressType = "static"' }
-       - { regexp: 'ethernet0.address' line: 'ethernet0.address = "00:50:56:2F:B9:5E"' }
-       - { regexp: 'displayName' line: 'displayName = "GuerillaVM3-L1"' }
+       - { regexp: 'ethernet0.address' line: 'ethernet0.address = "{{ linked1_ethernet0_address }}"' }
+       - { regexp: 'displayName' line: 'displayName = "GuerillaVM{{ target_vm_version_suffix }}-L1"' }
        - { regexp: 'sharedFolder0.present' line: 'sharedFolder0.present = "TRUE"' }
        - { regexp: 'sharedFolder0.enabled' line: 'sharedFolder0.enabled = "TRUE"' }
        - { regexp: 'sharedFolder0.readAccess' line: 'sharedFolder0.readAccess = "TRUE"' }
        - { regexp: 'sharedFolder0.writeAccess' line: 'sharedFolder0.writeAccess = "TRUE"' }
-       - { regexp: 'sharedFolder0.hostPath' line: 'sharedFolder0.hostPath = "/Users/bruceg/Documents/sharing/guerilla/vm1/DataDir"' }
+       - { regexp: 'sharedFolder0.hostPath' line: 'sharedFolder0.hostPath = "{{ host_sharing_guerilla_dir }}/vm1/DataDir"' }
        - { regexp: 'sharedFolder0.guestName' line: 'sharedFolder0.guestName = "hostDataDir"' }
        - { regexp: 'sharedFolder0.expiration' line: 'sharedFolder0.expiration = "never"' }
        - { regexp: 'sharedFolder.maxNum' line: 'sharedFolder.maxNum = "1"' }
@@ -38,13 +38,13 @@
        line: "{{ item.line }}"
      with_items:
        - { regexp: 'ethernet0.addressType' line: 'ethernet0.addressType = "static"' }
-       - { regexp: 'ethernet0.address' line: 'ethernet0.address = "00:50:56:36:A5:70"' }
-       - { regexp: 'displayName' line: 'displayName = "GuerillaVM3-L2"' }
+       - { regexp: 'ethernet0.address' line: 'ethernet0.address = "{{ linked2_ethernet0_address }}"' }
+       - { regexp: 'displayName' line: 'displayName = "GuerillaVM{{ target_vm_version_suffix }}-L2"' }
        - { regexp: 'sharedFolder0.present' line: 'sharedFolder0.present = "TRUE"' }
        - { regexp: 'sharedFolder0.enabled' line: 'sharedFolder0.enabled = "TRUE"' }
        - { regexp: 'sharedFolder0.readAccess' line: 'sharedFolder0.readAccess = "TRUE"' }
        - { regexp: 'sharedFolder0.writeAccess' line: 'sharedFolder0.writeAccess = "TRUE"' }
-       - { regexp: 'sharedFolder0.hostPath' line: 'sharedFolder0.hostPath = "/Users/bruceg/Documents/sharing/guerilla/vm2/DataDir"' }
+       - { regexp: 'sharedFolder0.hostPath' line: 'sharedFolder0.hostPath = "{{ host_sharing_guerilla_dir }}/vm2/DataDir"' }
        - { regexp: 'sharedFolder0.guestName' line: 'sharedFolder0.guestName = "hostDataDir"' }
        - { regexp: 'sharedFolder0.expiration' line: 'sharedFolder0.expiration = "never"' }
        - { regexp: 'sharedFolder.maxNum' line: 'sharedFolder.maxNum = "1"' }
