@@ -1,13 +1,13 @@
 {
-	"name": "chanceneedle-dm vm2",
-	"host": "http://chanceneedle-dm.nytimes.corp.yahoo.com",
-	"port": 8890,
-	"data_dir": "/hostDataDir/results",
+	"name": "{{ inventory_short_name }} vm2",
+	"host": "http://{{ inventory_hostname }}",
+	"port": {{ config_worker_vm2_port }},
+	"data_dir": "{{ config_worker_data_dir }}",
 	"db": {
-		"driver": "redis",
-		"host": "freshcaptain-dm.nytimes.corp.yahoo.com",
-	  	"port": 6379,
-	  	"password": ""
+		"driver": "{{ config_worker_db_driver }}",
+		"host": "{{ config_worker_db_host }}",
+		"port": {{ config_worker_db_port }},
+	    "password": "{{ config_worker_db_password }}"
 	},
 	"devices": [
 		{

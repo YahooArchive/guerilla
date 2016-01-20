@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 #TODO: make '$USER' below a variable from vars.yaml
-ansible-playbook -i production-inventory -u$USER -s clone-repo-locally.yml
+ansible-playbook -i ../../config/ansible/production-inventory -u$USER --extra-vars "@../../config/ansible/vars.yml" -s clone-repo-locally.yml

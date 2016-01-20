@@ -1,0 +1,5 @@
+
+[host]
+chanceneedle-dm.nytimes.corp.yahoo.com inventory_short_name="chanceneedle-dm"
+[local]
+127.0.0.1

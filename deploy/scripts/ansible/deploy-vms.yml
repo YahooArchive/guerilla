@@ -15,10 +15,10 @@
    - name: Ensure that the copy target vm2 dir exists
      file: path=path={{ host_sharing_guerilla_dir }}/vm2/DataDir state=directory owner={{ host_shared_owner }}
 
-   - name: copy worker configs for all vms (currently 2)
+   - name: copy from deploy/config/{host}/{vmN} to the host machine's DataDir
      copy: >
        src="{{ git_ansible_checkout_dir }}/deploy/config/{{ inventory_hostname }}/{{ item }}/"
-       dest="{{ host_sharing_guerilla_dir }}/{{ item }}/DataDir/configworker.json"
+       dest="{{ host_sharing_guerilla_dir }}/{{ item }}/DataDir/"
        owner="{{ host_shared_owner }}""
      with_items:
        - vm1
@@ -38,8 +38,39 @@
    - name: restore dhcpd.config
      command: cp "/Library/Preferences/VMware Fusion/vmnet8/dhcpd.conf.orig" "/Library/Preferences/VMware Fusion/vmnet8/dhcpd.conf"
 
-   - name: copy config file fragment
-     copy: src="dhcpd-conf-addition.conf" dest="/Library/Preferences/VMware Fusion/vmnet8"
+   - name: template config file fragment
+     template: src="dhcpd-conf-addition.conf" dest="/Library/Preferences/VMware Fusion/vmnet8/dhcpd-conf-addition.conf"
 
    - name: append conf-addition-conf to dhcpd.conf
      shell: cat "/Library/Preferences/VMware Fusion/vmnet8/dhcpd-conf-addition.conf" >> "/Library/Preferences/VMware Fusion/vmnet8/dhcpd.conf"
+
+# modify nat.conf for Guerilla and PM2.
+# #8889, #8890 for Guerilla. #58021, #58022, for pm2 tunnelling to ssh.
+# format is <external port number> = <VM's IP address>:<VM's port number>
+   - name: guerilla port config_worker_vm1_port forwarding
+     ini_file: dest=/Library/Preferences/VMware Fusion/vmnet8/nat.conf"
+               section=incomingtcp
+               option={{ config_worker_vm1_port }}
+               value="{{ linked1_fixed-address }}:{{ config_worker_vm1_port }}"
+               backup=yes
+
+   - name: guerilla port config_worker_vm2_port forwarding
+     ini_file: dest=/Library/Preferences/VMware Fusion/vmnet8/nat.conf"
+               section=incomingtcp
+               option={{ config_worker_vm2_port }}
+               value="{{ linked2_fixed-address }}:{{ config_worker_vm2_port }}"
+               backup=no
+
+   - name: guerilla port vm1_pm2_ssh_tunnel_port forwarding
+     ini_file: dest=/Library/Preferences/VMware Fusion/vmnet8/nat.conf"
+               section=incomingtcp
+               option={{ vm1_pm2_ssh_tunnel_port }}
+               value="{{ linked1_fixed-address }}:{{ pm2_ssh_tunnel_port_redirect }}"
+               backup=no
+
+   - name: guerilla port vm2_pm2_ssh_tunnel_port forwarding
+     ini_file: dest=/Library/Preferences/VMware Fusion/vmnet8/nat.conf"
+               section=incomingtcp
+               option={{ vm2_pm2_ssh_tunnel_port }}
+               value="{{ linked2_fixed-address }}:{{ pm2_ssh_tunnel_port_redirect }}"
+               backup=no

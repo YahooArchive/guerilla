@@ -3,7 +3,7 @@
   connection: local
   tasks:
    - name: run clone-repo locally
-     shell: "{{ package_dir }}/clone-repo-locally.sh {{ git_repo }} "{{ git_ansible_checkout_dir }}" check
+     shell: "{{ playbook_dir }}/clone-repo-locally.sh {{ git_repo }} '{{ git_ansible_checkout_dir }}' check"
      register: clone
 
    - debug: msg="{{ clone.stdout }}"

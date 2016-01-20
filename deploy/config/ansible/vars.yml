@@ -1,0 +1,36 @@
+
+target_vm_version_suffix: '3'
+ # we cannot fully normalize our variables here. For now we have some redundancy
+ # We will generate targets to 
+ # $target_vm_dir_parent/$target_vm_version_suffix/GuerillaVMv$target_vm_version_suffix.vmx
+ # $target_vm_dir_parent/$target_vm_version_suffix/GuerillaVMv$target_vm_version_suffix-linked1.vmx
+ # $target_vm_dir_parent/$target_vm_version_suffix/GuerillaVMv$target_vm_version_suffix-linked2.vmx
+ #
+ #
+target_vm_dir_parent: '/Volumes/startech/vms'
+target_vm_dir: "{{ target_vm_dir_parent }}/{{ target_vm_version_suffix }}"
+sourcevmx: '~/Documents/Virtual\ Machines.localized/OS\ X\ 10.10.vmwarevm/OS\ X\ 10.10.vmx'
+target_vmx_root: "GuerillaVMv{{ target_vm_version_suffix }}"
+targetvmx: "{{  target_vm_dir }}/{{ target_vmx_root }}.vmx"
+targetlinked1vmx: '{{  target_vm_dir }}/{{ target_vmx_root }}-linked1.vmx'
+targetlinked2vmx: '{{  target_vm_dir }}/{{ target_vmx_root }}-linked2.vmx'
+# The parent of vm1 and vm1 dirs. used by deploy-vms.yml
+host_sharing_guerilla_dir: "/Users/bruceg/Documents/sharing/guerilla"
+host_shared_owner: bruceg
+host_vm_dir_parent : "/Users/bruceg/Documents/VMs"
+git_repo: "git@git.corp.yahoo.com:bruceg/yahoo-guerilla.git"
+git_ansible_checkout_dir: /Users/bruceg/repos/ansible-checkout/bruceg-yahoo-guerilla
+linked1_ethernet0_address: "00:50:56:2F:B9:5E"
+linked2_ethernet0_address: "00:50:56:36:A5:70"
+linked1_fixed-address: "192.168.42.21"
+linked2_fixed-address: "192.168.42.22"
+config_worker_vm1_port: 8889
+config_worker_vm1_port: 8890
+config_worker_data_dir: "/hostDataDir/results"
+config_worker_db_driver: "redis"
+config_worker_db_host: "freshcaptain-dm.nytimes.corp.yahoo.com"
+config_worker_db_port: 6379
+config_worker_db_password: ""
+vm1_pm2_ssh_tunnel_port_in: 58021
+vm2_pm2_ssh_tunnel_port_in: 58022
+pm2_ssh_tunnel_port_redirect: 22
