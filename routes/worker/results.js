@@ -20,7 +20,7 @@ router.get('/jobs/:job_id/results/:result_number/badge', function (req, res, nex
         if (result.status === 'failure') {
             color = 'red';
         } else if (result.status === 'success') {
-            color = green;
+            color = 'green';
         }
         res.redirect('https://img.shields.io/badge/guerilla-' + result.status + '-' + color + '.svg');
     });
