@@ -13,6 +13,19 @@ var path = require('path');
 var models = require(path.join(__rootdir, 'lib', 'db')).models();
 var Result = models.Result;
 
+router.get('/jobs/:job_id/results/:result_number/badge', function (req, res, next) {
+    Result.statics.findByJobIdAndNumber(req.params.job_id, req.params.result_number, function (error, result) {
+        if (error || !result) return next(new Error(error));
+        var color = 'yellow';
+        if (result.status === 'failure') {
+            color = 'red';
+        } else if (result.status === 'success') {
+            color = green;
+        }
+        res.redirect('https://img.shields.io/badge/guerilla-' + result.status + '-' + color + '.svg');
+    });
+});
+
 router.get('/jobs/:job_id/results/:result_number/files', function (req, res, next) {
 	Result.statics.findByJobIdAndNumber(req.params.job_id, req.params.result_number, function (error, result) {
 		if (error || !result) return next(new Error(error));
