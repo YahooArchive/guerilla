@@ -70,13 +70,15 @@ module.exports.init = function (db) {
 			}
 		},
 		getLast: function (job_id, callback) {
-			Result.findOne().where('job_id', job_id)
+			Result.findOne()
+				.where('job_id', job_id)
 				.sort('-number')
 				.where('status').ne('running')
 				.run({}, callback);
 		},
 		getCurrent: function (job_id, callback) {
 			Result.findOne()
+				.where('job_id', job_id)
 				.sort('-number')
 				.run({}, callback);
 		}
