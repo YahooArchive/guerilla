@@ -71,7 +71,7 @@
                 <% if (result.error_messages && result.error_messages.length > 0) { %>
                   <h5><b>Errors:</b></h5>
                   <% for (var i = 0; i < result.error_messages.length; i++) { %>
-                    <h6><%- result.error_messages[i] %></h6>
+                    <pre><%- result.error_messages[i] %></pre>
                   <% } %>
                 <% } %>
 
@@ -116,7 +116,7 @@
                     <% if (result.pipeline[i].tasks[j].errors && result.pipeline[i].tasks[j].errors.length > 0) { %>
                       <h5><b>Errors:</b></h5>
                       <% for (var k = 0; k < result.pipeline[i].tasks[j].errors.length; k++) { %>
-                        <h6><%- result.pipeline[i].tasks[j].errors[k] %></h6>
+                        <pre><%- result.pipeline[i].tasks[j].errors[k] %></pre>
                       <% } %>
                     <% } %>
                   </div>
