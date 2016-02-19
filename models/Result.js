@@ -58,16 +58,22 @@ module.exports.init = function (db) {
 			});
 		},
 		findByJobIdAndNumber: function (job_id, number, callback) {
-			Result.findOne()
-				.where('job_id', job_id)
-				.where('number', number)
-				.run({}, callback);
+			if (number === 'last') {
+				this.getLast(job_id, callback);
+			} else if (number === 'current') {
+				this.getCurrent(job_id, callback);
+			} else {
+				Result.findOne()
+					.where('job_id', job_id)
+					.where('number', number)
+					.run({}, callback);
+			}
 		},
 		getLast: function (job_id, callback) {
 			Result.findOne()
 				.where('job_id', job_id)
-				.where('status').ne('running')
 				.sort('-number')
+				.where('status').ne('running')
 				.run({}, callback);
 		},
 		getCurrent: function (job_id, callback) {

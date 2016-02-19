@@ -14,7 +14,7 @@ var models = require(path.join(__rootdir, 'lib', 'db')).models();
 var Result = models.Result;
 
 router.get('/jobs/:job_id/results/:result_number/badge', function (req, res, next) {
-    var callback = function (error, result) {
+    Result.statics.findByJobIdAndNumber(req.params.job_id, req.params.result_number, function (error, result) {
         if (error || !result) return next(new Error(error));
         var color = 'yellow';
         if (result.status === 'failure') {
@@ -23,18 +23,11 @@ router.get('/jobs/:job_id/results/:result_number/badge', function (req, res, nex
             color = 'green';
         }
         res.redirect('https://img.shields.io/badge/guerilla-' + result.status + '-' + color + '.svg');
-    };
-    if (number === 'last') {
-        Result.statics.getLast(req.params.job_id, callback);
-    } else if (number === 'current') {
-        Result.statics.getCurrent(req.params.job_id, callback);
-    } else {
-        Result.statics.findByJobIdAndNumber(req.params.job_id, req.params.result_number, callback);
-    }
+    });
 });
 
 router.get('/jobs/:job_id/results/:result_number/files', function (req, res, next) {
-	var callback = function (error, result) {
+	Result.statics.findByJobIdAndNumber(req.params.job_id, req.params.result_number, function (error, result) {
 		if (error || !result) return next(new Error(error));
 		if (!result.output_dir) return next();
 
@@ -55,28 +48,15 @@ router.get('/jobs/:job_id/results/:result_number/files', function (req, res, nex
 				res.send({ files: files });
 			});
 		});
-	};
-    if (number === 'last') {
-        Result.statics.getLast(req.params.job_id, callback);
-    } else if (number === 'current') {
-        Result.statics.getCurrent(req.params.job_id, callback);
-    } else {
-        Result.statics.findByJobIdAndNumber(req.params.job_id, req.params.result_number, callback);
-    }
+
+	});
 });
 
 router.get('/jobs/:job_id/results/:result_number/:filename', function (req, res, next) {
-    var callback = function (error, result) {
+	Result.statics.findByJobIdAndNumber(req.params.job_id, req.params.result_number, function (error, result) {
 		if (error || !result) return next(new Error(error));
 		res.sendFile(path.join(result.output_dir, req.params.filename));
-	};
-    if (number === 'last') {
-        Result.statics.getLast(req.params.job_id, callback);
-    } else if (number === 'current') {
-        Result.statics.getCurrent(req.params.job_id, callback);
-    } else {
-        Result.statics.findByJobIdAndNumber(req.params.job_id, req.params.result_number, callback);
-    }
+	});
 });
 
 module.exports = router;
