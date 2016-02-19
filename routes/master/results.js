@@ -33,22 +33,28 @@ function forward (req, res, next) {
 
 router.get('/jobs/:job_id/results/:result_number', function (req, res, next) {
 	async.parallel({
-		j: function (cb) {
+		job_info: function (cb) {
 			Job.statics.populateById(req.params.job_id, cb);
 		},
-		r: function (cb) {
-			Result.statics.findByJobIdAndNumber(req.params.job_id, req.params.result_number, cb);
+		result_info: function (cb) {
+            if (req.params.result_number === 'last') {
+                Result.statics.getLast(req.params.job_id, cb);
+            } else if (req.params.result_number === 'current') {
+                Result.statics.getCurrent(req.params.job_id, cb);
+            } else {
+                Result.statics.findByJobIdAndNumber(req.params.job_id, req.params.result_number, cb);
+            }
 		}
 	}, function (error, results) {
-		if (error || !results.j || !results.r)
+		if (error || !results.job_info || !results.result_info)
 			return next(new Error(error));
 
-		var job = results.j;
-		var result = results.r;
+		var job = results.job_info;
+		var result = results.result_info;
 		var result_count = job.results.length;
 
 		delete job.results;
-		
+        console.log(result);
 		res.render('master/result', { job: job, result: result, result_count: result_count });
 	});
 });
