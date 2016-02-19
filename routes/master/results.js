@@ -57,4 +57,6 @@ router.get('/jobs/:job_id/results/:result_number/:filename', forward);
 
 router.get('/jobs/:job_id/results/:result_number/files', forward);
 
+router.get('/jobs/:job_id/results/:result_number/badge', forward);
+
 module.exports = router;
