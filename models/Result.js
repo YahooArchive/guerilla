@@ -58,14 +58,36 @@ module.exports.init = function (db) {
 			});
 		},
 		findByJobIdAndNumber: function (job_id, number, callback) {
-			Result.findOne().where('job_id', job_id).where('number', number).run({}, callback);
+			if (number === 'last') {
+				this.getLast(job_id, callback);
+			} else if (number === 'current') {
+				this.getCurrent(job_id, callback);
+			} else {
+				Result.findOne()
+					.where('job_id', job_id)
+					.where('number', number)
+					.run(callback);
+			}
+		},
+		getLast: function (job_id, callback) {
+			Result.findOne()
+				.where('job_id', job_id)
+				.sort('-number')
+                .where('status').nin(['queued', 'running'])
+                .run(callback);
+        },
+		getCurrent: function (job_id, callback) {
+			Result.findOne()
+				.where('job_id', job_id)
+				.sort('-number')
+				.run(callback);
 		}
 	};
 
 	Result.prototype.log = function (tag, string, callback) {
 		callback = callback || function (error) { if (error) logger.e(error) };
 		string = String(string);
-		
+
 		try {
 			if (this.output_dir) {
 				var logString = '[' + moment().format('M/D/YY h:mm:ss A') + '] [' + tag.toUpperCase() + '] ' + string.trim() + '\n';
@@ -103,7 +125,7 @@ module.exports.init = function (db) {
 				if (utilities.exists(data[key])) this.data[key] = data[key];
 			}
 		}
-		
+
 		this.save(callback);
 	};
 
