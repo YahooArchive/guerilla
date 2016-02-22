@@ -1,0 +1,51 @@
+{
+  /**
+   * Application configuration section
+   * http://pm2.keymetrics.io/docs/usage/application-declaration/
+   */
+  apps : [{
+    // Worker
+    "name"        : "guerilla-worker",
+    "script"      : "server.js",
+    "args"        : ["--worker", "--config", "/hostDataDir/configworker.json ", "--foo2"],
+    "watch"       : false,
+    "node_args"   : "--harmony",
+    "cwd"         : "/var/www/development/worker/source",
+    "log_date_format" : "YYYY-MM-DD HH:mm Z"
+  }],
+
+  /**
+   * Deployment section
+   * http://pm2.keymetrics.io/docs/usage/deployment/
+   */
+  deploy : {
+    production : {
+      user : "node",
+      host : "a.b.c.d",
+      ref  : "origin/deploy-nyc1",
+      repo : "git@github.com:repo.git",
+      path : "/Users/guser/Workspace/worker",
+      "post-deploy" : "npm install ; pm2 startOrRestart ecosystem-worker.json --env production"
+    },
+    dev : {
+      user : "guser",
+      host : [
+              {
+                host : "chanceneedle-dm.nytimes.corp.yahoo.com",
+                port : "58021"
+              },
+              {
+                host : "chanceneedle-dm.nytimes.corp.yahoo.com",
+                port : "58022"
+              }
+            ],
+      ref  : "origin/deploy-nyc1",
+      repo : "git@git.corp.yahoo.com:bruceg/yahoo-guerilla.git",
+      path : "/var/www/development/worker",
+      "post-deploy" : "npm install ; pm2 startOrRestart ecosystem-worker.json --env dev",
+      env  : {
+        NODE_ENV: "dev"
+      }
+    }
+  }
+}

@@ -22,6 +22,7 @@ module.exports.init = function (db) {
 		number: { type: Number, index: true },
 		worker_name: String,
 		worker_url: String,
+		git_sha: String,
 		device: db.JSON,
 		queued: Date,
 		queue_time: Number,
@@ -53,6 +54,7 @@ module.exports.init = function (db) {
 				result.data = {};
 				result.reports = [];
 				result.error_messages = [];
+				result.git_sha = git_sha;
 
 				result.save(callback);
 			});
