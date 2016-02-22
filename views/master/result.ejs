@@ -33,7 +33,11 @@
               <h3 class="result-number"># <%- result.number %></h3>
               <%- include('../partials/result-status-icon', { result: result }) %>
 
-              <h4><%- job.name %> <span class="gray-font"><%- job.project.name %></span></h4>
+              <h4>
+                <a href="/jobs/<%- job.id %>"><%- job.name %></a>
+                <br/>
+                <small class="gray-font"><%- job.project.name %></small>
+              </h4>
 
               <div class="result-overview">
                 <% if (result.worker_name) { %><h5><b>Worker:</b> <%- result.worker_name %></h5><% } %>
