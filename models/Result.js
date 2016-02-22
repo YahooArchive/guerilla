@@ -66,7 +66,7 @@ module.exports.init = function (db) {
 				Result.findOne()
 					.where('job_id', job_id)
 					.where('number', number)
-					.run({}, callback);
+					.run(callback);
 			}
 		},
 		getLast: function (job_id, callback) {
@@ -74,13 +74,13 @@ module.exports.init = function (db) {
 				.where('job_id', job_id)
 				.sort('-number')
                 .where('status').nin(['queued', 'running'])
-                .run({}, callback);
+                .run(callback);
         },
 		getCurrent: function (job_id, callback) {
 			Result.findOne()
 				.where('job_id', job_id)
 				.sort('-number')
-				.run({}, callback);
+				.run(callback);
 		}
 	};
 
