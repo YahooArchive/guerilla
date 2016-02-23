@@ -1,20 +1,21 @@
 {
-	"name": "Guerilla Worker",
-	"host": "localhost",
-	"port": 8888,
-	"data_dir": "~/Guerilla",
-	"db": {
-		"driver": "redis",
-		"host": "localhost",
-		"port": 6379
-	},
-	"devices": [
-		{
-			"tag": "",
-			"platform": "",
-			"name": "",
-			"identifier": "",
-			"OS": ""
-		}
-	]
+  "name": "Guerilla Worker",
+  "host": "localhost",
+  "port": 8888,
+  "data_dir": "~/Guerilla",
+  "db": {
+    "driver": "redis",
+    "host": "localhost",
+    "port": 6379,
+    "password": ""
+  },
+  "devices": [
+    {
+      "tag": "",
+      "platform": "",
+      "name": "",
+      "identifier": "",
+      "OS": ""
+    }
+  ]
 }
