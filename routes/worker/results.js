@@ -16,13 +16,17 @@ var Result = models.Result;
 router.get('/jobs/:job_id/results/:result_number/badge', function (req, res, next) {
     Result.statics.findByJobIdAndNumber(req.params.job_id, req.params.result_number, function (error, result) {
         if (error || !result) return next(new Error(error));
+        var label = 'guerilla';
         var color = 'yellow';
         if (result.status === 'failure') {
             color = 'red';
         } else if (result.status === 'success') {
             color = 'green';
         }
-        res.redirect('https://img.shields.io/badge/guerilla-' + result.status + '-' + color + '.svg');
+        if (req.query.label) {
+            label = req.query.label;
+        }
+        res.redirect('https://img.shields.io/badge/' + label + '-' + result.status + '-' + color + '.svg');
     });
 });
 
