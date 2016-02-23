@@ -24,7 +24,10 @@ router.get('/jobs/:job_id/results/:result_number/badge', function (req, res, nex
             color = 'green';
         }
         if (req.query.label) {
-            label = req.query.label;
+            // escape string according to http://shields.io/#your-badge
+            label = req.query.label
+                .replace('-', '--')
+                .replace('_', '__');
         }
         res.redirect('https://img.shields.io/badge/' + label + '-' + result.status + '-' + color + '.svg');
     });
