@@ -14,8 +14,12 @@ var config = require(path.join(__rootdir, 'lib', 'config'));
 var workers = [];
 config.workers.forEach(function (worker, index) {
 	worker.id = index;
-	if (worker.host.slice(-1) === '/')
+	if (worker.host.slice(-1) === '/') {
 		worker.host = worker.host.slice(0, -1);
+	}
+	if (!worker.host.includes('://')) {
+		worker.host = 'http://' + worker.host;
+	}
 	worker.url = worker.host + ':' + worker.port + '/';
 	workers.push(worker);
 });
