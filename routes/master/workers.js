@@ -17,7 +17,7 @@ config.workers.forEach(function (worker, index) {
 	if (worker.host.slice(-1) === '/') {
 		worker.host = worker.host.slice(0, -1);
 	}
-	if (!worker.host.includes('://')) {
+	if (worker.host.indexOf('://') === -1) {
 		worker.host = 'http://' + worker.host;
 	}
 	worker.url = worker.host + ':' + worker.port + '/';

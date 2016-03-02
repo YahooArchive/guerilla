@@ -1,0 +1,32 @@
+
+module.exports = {
+	"host": "localhost",
+	"port": 7777,
+	"db": {
+		"driver": "redis",
+		"host": "localhost",
+		"port": 6379,
+		"password": ""
+	},
+	"github": {
+		"host": "api.github.com",
+		"token": ""
+	},
+	"mailer": {
+		"service": "",
+		"username": "",
+		"password": ""
+	},
+	"workers": [
+		{
+			"name": "Guerilla Worker",
+			"host": "localhost",
+			"port": 8888
+		}
+	],
+	"mode": "master",
+
+	getMode: function () {
+		return this.mode;
+	}
+};
