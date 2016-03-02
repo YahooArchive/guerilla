@@ -21,6 +21,12 @@ An instance of Guerilla manages jobs and provides a UI to view job results. A jo
 * [Deploying to a farm](wiki/Deploy.md)
 * [FAQs](wiki/FAQs.md)
 
+### Notes
+
+Guerilla requires nodejs v0.12 or greater, and only supports the [ES6 features](http://stackoverflow.com/questions/28388885/ecmascript-6-features-available-in-node-js-0-12) that are enabled without the ```--harmony``` flag.
+
+* [Roadmap](wiki/Roadmap.md)
+
 ### License
 
 Code licensed under the MIT License. See LICENSE file for terms.
