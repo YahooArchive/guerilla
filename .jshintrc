@@ -1,7 +1,7 @@
 {
   "node": true,
   "undef": true,
-  "unused": false,
+  "unused": true,
   "asi": true,
   "sub": true,
   "predef": [ "__rootdir", "logger" ]

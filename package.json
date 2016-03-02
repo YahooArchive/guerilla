@@ -70,7 +70,8 @@
     "lodash": "^4.6.0",
     "mocha": "^2.4.5",
     "mockery": "^1.4.0",
-    "rewire": "^2.5.1"
+    "rewire": "^2.5.1",
+    "sinon": "^1.17.3"
   },
   "optionalDependencies": {
     "deviceconsole": "^1.0.1",

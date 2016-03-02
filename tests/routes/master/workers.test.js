@@ -4,7 +4,6 @@ var mockery = require('mockery');
 var rewire = require('rewire');
 var path = require('path');
 var assert = require('chai').assert;
-var _ = require('lodash');
 
 var __ROOTDIR = path.join(__dirname, '..', '..', '..');
 

@@ -5,15 +5,20 @@
 
 var mockery = require('mockery');
 var debug = require('debug')('coverage.test');
-var async = require('async');
+var sinon = require('sinon');
 var path = require('path');
 var glob = require('glob');
+var fs = require('fs');
 
 var __ROOTDIR = path.join(__dirname, '..');
 var SRC_DIRS = [ 'routes/master', 'routes/worker', 'services', 'models',
 	'tasks', 'lib', '.' ];
 var EXCLUDE = [ 'lib/config.js', 'lib/github-client.js', 
 	'lib/simctl-test-data.js', 'lib/logger.js' ];
+// should simctl-test-data be moved to a tests/fixtures directory?
+var SIMCTL_TEST_DATA = fs.readFileSync(
+	path.join(__ROOTDIR, 'lib', 'simctl-test-data.js'),
+	{encoding: 'utf-8'});
 
 function req(filename) {
 	var startAt = process.hrtime();
@@ -23,7 +28,18 @@ function req(filename) {
 	debug(time.toFixed(3) + 'ms, fn:', filename);
 }
 
+function getSimctlData() {
+	return SIMCTL_TEST_DATA;
+}
+
 describe('Coverage baseline', function () {
+	var sandbox;
+	before(function () {
+		sandbox = sinon.sandbox.create();
+	});
+	after(function () {
+		sandbox.restore();
+	});
 	before(function () {
 		mockery.enable({
 			warnOnUnregistered: false
@@ -53,6 +69,15 @@ describe('Coverage baseline', function () {
 	});
 	after(function () {
 		mockery.disable();
+	});
+	beforeEach(function () {
+		var childProcess = require('child_process');
+		sandbox.stub(childProcess, 'execSync')
+			.withArgs('xcrun simctl list')
+			.returns(getSimctlData());
+	});
+	afterEach(function () {
+		sandbox.restore();
 	});
 	it('should require globals.js first', function () {
 		req(path.join('lib', 'globals.js'));
