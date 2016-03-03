@@ -1,0 +1,26 @@
+{
+  "host": "localhost",
+  "port": 7777,
+  "db": {
+    "driver": "redis",
+    "host": "localhost",
+    "port": 6379,
+    "password": ""
+  },
+  "github": {
+		"host": "api.github.com",
+		"token": "XXX"
+  },
+  "mailer": {
+    "service": "",
+    "username": "",
+    "password": ""
+  },
+  "workers": [
+    {
+      "name": "Guerilla Worker",
+      "host": "localhost",
+      "port": 8888
+    }
+  ]
+}
