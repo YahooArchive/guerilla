@@ -22,7 +22,7 @@
     "url": "http://github.com/yahoo/guerilla/issues"
   },
   "scripts": {
-    "test": "TEST=1 ./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha -- $(find tests -name '*.test.js')",
+    "test": "TEST=1 ./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha --report lcovonly -- $(find tests -name '*.test.js') && cat ./coverage/lcov.info | ./node_modules/.bin/coveralls && rm -rf ./coverage",
     "lint": "./node_modules/.bin/jshint tests"
   },
   "dependencies": {
@@ -63,12 +63,14 @@
   },
   "devDependencies": {
     "chai": "^3.5.0",
+    "coveralls": "^2.11.8",
     "debug": "^2.2.0",
     "glob": "^7.0.0",
     "istanbul": "^0.4.2",
     "jshint": "^2.9.1",
     "lodash": "^4.6.0",
     "mocha": "^2.4.5",
+    "mocha-lcov-reporter": "^1.2.0",
     "mockery": "^1.4.0",
     "rewire": "^2.5.1",
     "sinon": "^1.17.3"
