@@ -21,6 +21,9 @@
   "bugs": {
     "url": "http://github.com/yahoo/guerilla/issues"
   },
+  "engines": {
+    "node": ">=0.12"
+  },
   "scripts": {
     "master": "node ./node_modules/babel-cli/bin/babel-node server.js --master",
     "worker": "node ./node_modules/babel-cli/bin/babel-node server.js --worker",
