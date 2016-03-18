@@ -7,6 +7,8 @@
  */
 
 var git = require('git-rev');
+var logger = require('./lib/logger');
+
 git.long(function (str) {
 
 	require('./lib/globals');

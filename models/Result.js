@@ -6,12 +6,13 @@
  * Models the results from an individual job run.
  */
 
+import utilities from './utilities';
+
 var moment = require('moment');
 var path = require('path');
 var util = require('util');
 var async = require('async');
 var fs = require('fs-extra');
-var utilities = require(path.join(__rootdir, 'lib', 'utilities'));
 
 var Result;
 
