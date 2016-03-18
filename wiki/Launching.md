@@ -4,7 +4,11 @@
 
 Navigate to the Guerilla project directory and start the redis server:
 
-`redis-server`
+```sh
+npm start-redis
+# or the following legacy way
+# redis-server
+```
 
 ### Install NPM Packages
 
@@ -41,6 +45,16 @@ temporary directory.
 
 #### Starting syntax
 
-Master: `node server.js --master [--config configFilePath] {--saveTempFiles}`
+Master:
+```sh
+npm start-master
+# or the following legacy way
+# node server.js --master [--config configFilePath] {--saveTempFiles}`
+```
 
-Worker: `node server.js --worker [--config configFilePath] {--saveTempFiles}`
+Worker:
+```sh
+npm start-worker
+# or the following legacy way
+# node server.js --worker [--config configFilePath] {--saveTempFiles}
+```
