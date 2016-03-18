@@ -25,10 +25,10 @@
     "node": ">=0.12"
   },
   "scripts": {
-    "master": "node ./node_modules/babel-cli/bin/babel-node server.js --master",
-    "worker": "node ./node_modules/babel-cli/bin/babel-node server.js --worker",
+    "master": "node ./node_modules/.bin/babel-node server.js --master",
+    "worker": "node ./node_modules/.bin/babel-node server.js --worker",
     "redis": "redis-server",
-    "test": "TEST=1 ./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha -- $(find tests -name '*.test.js')",
+    "test": "TEST=1 ./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha -- $(find tests -name '*.test.js') --compilers js:babel-core/register",
     "lint": "./node_modules/.bin/jshint tests"
   },
   "dependencies": {
