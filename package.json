@@ -28,9 +28,6 @@
     "test": "TEST=1 node_modules/.bin/istanbul cover node_modules/.bin/_mocha -- $(find tests -name '*.test.js') --compilers js:babel-core/register",
     "lint": "./node_modules/.bin/jshint tests"
   },
-  "engines": {
-    "node": ">=0.12"
-  },
   "dependencies": {
     "async": "^1.0.0",
     "body-parser": "^1.10.2",
@@ -63,6 +60,9 @@
     "temp": "^0.8.3",
     "underscore": "^1.8.3",
     "yargs": "^3.15.0"
+  },
+  "engines": {
+    "node": ">=0.12"
   },
   "devDependencies": {
     "babel-cli": "^6.6.5",
