@@ -6,7 +6,7 @@
  * Models a collection of jobs.
  */
 
-import utilities from './utilities';
+import utilities from '../lib/utilities';
 
 var async = require('async');
 var path = require('path');

@@ -6,8 +6,6 @@
  * Router for all job endpoints.
  */
 
-import utilities from '../lib/utilities';
-
 var router = require('express').Router();
 var path = require('path');
 var models = require(path.join(__rootdir, 'lib', 'db')).models();

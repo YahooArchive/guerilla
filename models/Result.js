@@ -6,7 +6,7 @@
  * Models the results from an individual job run.
  */
 
-import utilities from './utilities';
+import utilities from '../lib/utilities';
 
 var moment = require('moment');
 var path = require('path');
