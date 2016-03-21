@@ -22,11 +22,11 @@
     "url": "http://github.com/yahoo/guerilla/issues"
   },
   "scripts": {
+    "redis": "redis-server",
     "master": "node_modules/.bin/babel-node server.js --master",
     "worker": "node_modules/.bin/babel-node server.js --worker",
-    "redis": "redis-server",
-    "test": "TEST=1 node_modules/.bin/istanbul cover node_modules/.bin/_mocha -- $(find tests -name '*.test.js') --compilers js:babel-core/register",
-    "lint": "./node_modules/.bin/jshint tests"
+    "test": "node_modules/.bin/istanbul cover node_modules/.bin/_mocha --report lcovonly --compilers js:babel-core/register -- $(find tests -name '*.test.js')",
+    "lint": "node_modules/.bin/jshint tests"
   },
   "dependencies": {
     "async": "^1.0.0",
