@@ -139,6 +139,8 @@ describe('Coverage baseline', function () {
 			});
 			mockery.registerSubstitute('./logger',
 				path.join(__ROOTDIR, 'tests', 'mocks', 'logger'));
+			mockery.registerSubstitute('./lib/logger',
+				path.join(__ROOTDIR, 'tests', 'mocks', 'logger'));
 			mockery.registerSubstitute('git-rev',
 				path.join(__ROOTDIR, 'tests', 'mocks', 'git-rev'));
 			mockery.registerSubstitute('fs-extra',
