@@ -25,7 +25,7 @@
     "master": "node_modules/.bin/babel-node server.js --master",
     "worker": "node_modules/.bin/babel-node server.js --worker",
     "redis": "redis-server",
-    "test": "TEST=1 ./node_modules/.bin/babel-node ./node_modules/.bin/istanbul cover node_modules/.bin/_mocha -- --compilers js:babel-core/register --timeout 3000 $(find tests -name '*.test.js') ",
+    "test": "TEST=1 ./node_modules/.bin/babel-node ./node_modules/.bin/istanbul cover node_modules/.bin/_mocha -- --compilers js:babel-core/register --timeout 5000 $(find tests -name '*.test.js') ",
     "lint": "./node_modules/.bin/jshint tests"
   },
   "dependencies": {
