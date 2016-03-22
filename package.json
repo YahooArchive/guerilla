@@ -25,7 +25,7 @@
     "master": "node_modules/.bin/babel-node server.js --master",
     "worker": "node_modules/.bin/babel-node server.js --worker",
     "redis": "redis-server",
-    "test": "TEST=1 node_modules/.bin/istanbul cover node_modules/.bin/_mocha -- $(find tests -name '*.test.js') --compilers js:babel-core/register",
+    "test": "TEST=1 ./node_modules/.bin/babel-node ./node_modules/.bin/istanbul cover node_modules/.bin/_mocha -- --compilers js:babel-core/register --timeout 5000 $(find tests -name '*.test.js') ",
     "lint": "./node_modules/.bin/jshint tests"
   },
   "dependencies": {
@@ -77,7 +77,7 @@
     "chai": "^3.5.0",
     "debug": "^2.2.0",
     "glob": "^7.0.0",
-    "istanbul": "^0.4.2",
+    "istanbul": "^1.0.0-alpha.2",
     "jshint": "^2.9.1",
     "lodash": "^4.6.0",
     "mocha": "^2.4.5",
