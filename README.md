@@ -1,3 +1,5 @@
+**Please Note:** This repository has a known security vulnerability. Use at your own risk!
+
 Guerilla
 ========
 
