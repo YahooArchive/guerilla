@@ -6,9 +6,10 @@
  * Models a collection of jobs.
  */
 
+import * as utilities from '../lib/utilities';
+
 var async = require('async');
 var path = require('path');
-var utilities = require(path.join(__rootdir, 'lib', 'utilities'));
 
 var Project;
 
