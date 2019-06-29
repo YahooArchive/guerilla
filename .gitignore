@@ -49,3 +49,7 @@ config/worker/*
 
 # intellij Webstorm
 .idea/
+
+# babel
+*-compiled.js
+*-compiled.js.map

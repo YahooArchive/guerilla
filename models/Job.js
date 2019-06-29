@@ -6,12 +6,13 @@
  * Models a configured job.
  */
 
+import utilities from '../lib/utilities';
+
 var async = require('async');
 var path = require('path');
 var childProcess = require('child_process');
 var config = require(path.join(__rootdir, 'lib', 'config'));
 var Report = require(path.join(__rootdir, 'lib', 'report'));
-var utilities = require(path.join(__rootdir, 'lib', 'utilities'));
 
 var Job;
 

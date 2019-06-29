@@ -1,4 +1,11 @@
 language: node_js
+
 node_js:
   - 4
   - 0.12
+
+install:
+  - npm install codecov
+
+script:
+  - node_modules/.bin/codecov

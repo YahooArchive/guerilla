@@ -5,6 +5,7 @@ Guerilla
 
 [![Build Status](https://travis-ci.org/yahoo/guerilla.svg?branch=master)](https://travis-ci.org/yahoo/guerilla)
 [![Join the chat at https://gitter.im/yahoo/guerilla](https://badges.gitter.im/yahoo/guerilla.svg)](https://gitter.im/yahoo/guerilla?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![codecov.io](https://img.shields.io/codecov/c/github/yahoo/guerilla.svg)](https://codecov.io/github/yahoo/guerilla?branch=master)
 
 Guerilla is a distributed build/test server specialized for iOS and Android.
 
